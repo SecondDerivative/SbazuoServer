@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SbazuoServer", "SbazuoServer\SbazuoServer.csproj", "{A6E65736-B085-4B9D-A398-71EB71809634}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SbazuoServer", "SbazuoServer\SbazuoServer.csproj", "{A6E65736-B085-4B9D-A398-71EB71809634}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sbazuo.Geometry", "Sbazuo.Geometry\Sbazuo.Geometry.csproj", "{66AF72A9-31ED-4EDE-ADC5-772552F0AE06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A6E65736-B085-4B9D-A398-71EB71809634}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6E65736-B085-4B9D-A398-71EB71809634}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6E65736-B085-4B9D-A398-71EB71809634}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66AF72A9-31ED-4EDE-ADC5-772552F0AE06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66AF72A9-31ED-4EDE-ADC5-772552F0AE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66AF72A9-31ED-4EDE-ADC5-772552F0AE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66AF72A9-31ED-4EDE-ADC5-772552F0AE06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
