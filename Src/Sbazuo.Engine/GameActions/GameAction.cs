@@ -1,4 +1,6 @@
-﻿namespace Sbazuo.Engine.GameActions {
+﻿using Sbazuo.Engine.GameControls;
+
+namespace Sbazuo.Engine.GameActions {
 
 	/// <summary>
 	/// represents data about gameaction
@@ -17,6 +19,24 @@
 		protected GameAction(string instigatorId) {
 			InstigatorId = instigatorId;
 		}
+
+		/// <summary>
+		/// apply game rules to this game action
+		/// </summary>
+		/// <param name="controller"></param>
+		public virtual void ApplyRules(GameController controller) {
+			foreach (var rule in controller.GlobalGameRules) {
+				rule.ApplyToGameAction(this, controller);
+			}
+			foreach (var blockRule in controller.Blocks) {
+				blockRule.ApplyToGameAction(this, controller);
+			}
+		}
+
+		/// <summary>
+		/// apply game action to current game
+		/// </summary>
+		public abstract void ApplyToGame(GameController controller);
 
 	}
 }

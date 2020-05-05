@@ -24,11 +24,6 @@ namespace Sbazuo.Engine.Projectiles {
 		bool BreakingRuleApply { get; }
 
 		/// <summary>
-		/// if false, projectile position will not be update
-		/// </summary>
-		bool UpdateProjectilePosition { get; }
-
-		/// <summary>
 		/// returns new projectile motion vector
 		/// </summary>
 		Vector2D CreateReflectionVector();

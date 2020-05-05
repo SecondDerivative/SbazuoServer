@@ -14,9 +14,9 @@ namespace Sbazuo.Engine.Projectiles {
 		Vector2D MotionVector { get; set; }
 
 		/// <summary>
-		/// gets or sets projectile position point
+		/// gets projectile geometry shape
 		/// </summary>
-		Point2D Position { get; set; }
+		Circle2D Shape { get; }
 
 		/// <summary>
 		/// gets player's owner id

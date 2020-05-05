@@ -11,7 +11,7 @@ namespace Sbazuo.Engine.GameRules {
 		/// <summary>
 		/// observing applicable game action and change it if needed
 		/// </summary>
-		void Observe(GameAction action, GameController controller);
+		void ApplyToGameAction(GameAction action, GameController controller);
 
 	}
 }

@@ -27,6 +27,6 @@ namespace Sbazuo.Engine.Blocks {
 		/// <returns> collision data or null, if hasn't collision </returns>
 		public abstract IProjectileCollision HasCollision(IProjectile projectile);
 
-		public abstract void Observe(GameAction action, GameController controller);
+		public abstract void ApplyToGameAction(GameAction action, GameController controller);
 	}
 }

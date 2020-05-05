@@ -1,5 +1,5 @@
 ﻿namespace Sbazuo.Engine.GameActions {
-	
+
 	/// <summary>
 	/// represents class, which applying gameactions
 	/// </summary>
