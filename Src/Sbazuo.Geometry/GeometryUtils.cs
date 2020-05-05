@@ -3,8 +3,10 @@
 namespace Sbazuo.Geometry {
 	public static class GeometryUtils {
 
+		public const double Infinity = double.PositiveInfinity;
+
 		/// <summary>
-		/// calculates distance from <see cref="Point2D"/> to <see cref="Line2D" />
+		/// calculates distance from <see cref="Point2D"/> to <see cref="Line2D"/>
 		/// </summary>
 		public static double DistanceToLine(Point2D point, Line2D line) {
 			Vector2D n = line.LineDirection.Normal;
@@ -60,6 +62,29 @@ namespace Sbazuo.Geometry {
 			result = Min(result, Abs(DistanceToLine(segment.B, line)));
 			result = Min(result, Abs(DistanceToLine(segment.A, line)));
 			if (Sign(DistanceToLine(segment.A, line)) != Sign(DistanceToLine(segment.B, line))) {
+				return 0;
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// calculates distance from <see cref="Segment2D"/> to <see cref="Ray2D"/>
+		/// </summary>
+		public static double DistanceFromSegmentToRay(Segment2D segment, Ray2D ray) {
+			double result = Min(Point2D.Distance(segment.A, ray.StartPoint), Point2D.Distance(segment.B, ray.StartPoint));
+			Vector2D ca = new Vector2D(ray.StartPoint, segment.A);
+			Vector2D cb = new Vector2D(ray.StartPoint, segment.B);
+			if (Abs(Vector2D.GetAngle(cb, ray.RayDirection)) < PI / 2) {
+				result = Min(result, Abs(DistanceToLine(segment.B, new Line2D(ray.StartPoint, ray.RayDirection))));
+			}
+			if (Abs(Vector2D.GetAngle(ca, ray.RayDirection)) < PI / 2) {
+				result = Min(result, Abs(DistanceToLine(segment.A, new Line2D(ray.StartPoint, ray.RayDirection))));
+			}
+
+			if (Vector2D.VectorProduct(ca, ray.RayDirection) * Vector2D.VectorProduct(ca, cb) >= 0 
+				&& Vector2D.VectorProduct(cb, ray.RayDirection) * Vector2D.VectorProduct(cb, ca) >= 0 
+				&& Sign(Vector2D.GetAngle(ray.RayDirection, ca)) != Sign(Vector2D.GetAngle(ray.RayDirection, cb))) {
+
 				return 0;
 			}
 			return result;

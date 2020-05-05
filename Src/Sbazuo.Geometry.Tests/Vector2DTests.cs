@@ -79,6 +79,13 @@ namespace Sbazuo.Geometry.Tests {
 		}
 
 		[TestMethod]
+		public void VectorProductTest() {
+			Vector2D a = new Vector2D(1, 0);
+			Vector2D b = new Vector2D(0, 1);
+			Assert.AreEqual(Vector2D.VectorProduct(a, b), 1);
+		}
+
+		[TestMethod]
 		public void MultiphyTest() {
 			Vector2D a = new Vector2D(10, -62.5);
 			Vector2D m = a * 2;
@@ -118,6 +125,5 @@ namespace Sbazuo.Geometry.Tests {
 			Assert.IsFalse(Vector2D.AreParallel(a, d));
 			Assert.IsFalse(Vector2D.AreParallel(b, d));
 		}
-
 	}
 }
