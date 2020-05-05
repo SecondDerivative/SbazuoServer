@@ -5,11 +5,13 @@ namespace Sbazuo.Geometry {
 
 		public const double Infinity = double.PositiveInfinity;
 
+		public const double Eps = 0.00001;
+
 		/// <summary>
 		/// calculates distance from <see cref="Point2D"/> to <see cref="Line2D"/>
 		/// </summary>
 		public static double DistanceToLine(Point2D point, Line2D line) {
-			Vector2D n = line.LineDirection.Normal;
+			Vector2D n = line.Direction.Normal;
 			Vector2D x = new Vector2D(line.LinePoint, point);
 			return Vector2D.ScalarProduct(n, x) / n.Length;
 		}
@@ -46,7 +48,7 @@ namespace Sbazuo.Geometry {
 		/// calculates distance between two lines
 		/// </summary>
 		public static double DistanceBetweenLines(Line2D a, Line2D b) {
-			if (Vector2D.AreParallel(a.LineDirection, b.LineDirection)) {
+			if (Vector2D.AreParallel(a.Direction, b.Direction)) {
 				return DistanceToLine(a.LinePoint, b);
 			}
 			return 0;
@@ -57,8 +59,6 @@ namespace Sbazuo.Geometry {
 		/// </summary>
 		public static double DistanceFromSegmentToLine(Segment2D segment, Line2D line) {
 			double result = Min(Point2D.Distance(segment.A, line.LinePoint), Point2D.Distance(segment.B, line.LinePoint));
-			//Vector2D ca = new Vector2D(line.LinePoint, segment.A);
-			//Vector2D cb = new Vector2D(line.LinePoint, segment.B);
 			result = Min(result, Abs(DistanceToLine(segment.B, line)));
 			result = Min(result, Abs(DistanceToLine(segment.A, line)));
 			if (Sign(DistanceToLine(segment.A, line)) != Sign(DistanceToLine(segment.B, line))) {
@@ -80,7 +80,7 @@ namespace Sbazuo.Geometry {
 			if (Abs(Vector2D.GetAngle(ca, ray.RayDirection)) < PI / 2) {
 				result = Min(result, Abs(DistanceToLine(segment.A, new Line2D(ray.StartPoint, ray.RayDirection))));
 			}
-
+			result = Min(result, Abs(DistanceToSegment(ray.StartPoint, segment)));
 			if (Vector2D.VectorProduct(ca, ray.RayDirection) * Vector2D.VectorProduct(ca, cb) >= 0 
 				&& Vector2D.VectorProduct(cb, ray.RayDirection) * Vector2D.VectorProduct(cb, ca) >= 0 
 				&& Sign(Vector2D.GetAngle(ray.RayDirection, ca)) != Sign(Vector2D.GetAngle(ray.RayDirection, cb))) {

@@ -9,14 +9,14 @@
 		/// <summary>
 		/// gets or sets vector, which parallel with line
 		/// </summary>
-		public Vector2D LineDirection { get; set; }
+		public Vector2D Direction { get; set; }
 
 		/// <summary>
 		/// create new instance of <see cref="Line2D"/>, using linePoint and direction vector
 		/// </summary>
 		public Line2D(Point2D linePoint, Vector2D lineDirection) {
 			this.LinePoint = linePoint;
-			this.LineDirection = lineDirection;
+			this.Direction = lineDirection;
 		}
 
 		/// <summary>
@@ -24,7 +24,7 @@
 		/// </summary>
 		public Line2D(Point2D a, Point2D b) {
 			this.LinePoint = a;
-			this.LineDirection = new Vector2D(a, b);
+			this.Direction = new Vector2D(a, b);
 		}
 
 		/// <summary>
@@ -32,7 +32,7 @@
 		/// </summary>
 		public Line2D(Segment2D prototype) {
 			this.LinePoint = prototype.A;
-			this.LineDirection = new Vector2D(prototype.A, prototype.B);
+			this.Direction = new Vector2D(prototype.A, prototype.B);
 		}
 
 	}

@@ -21,7 +21,7 @@ namespace Sbazuo.Geometry {
 		/// <summary>
 		/// returns normalized vector of this instance
 		/// </summary>
-		public Vector2D Normalized => Length == 0 ? new Vector2D(0, 0) : new Vector2D(X / Length, Y  / Length);
+		public Vector2D Normalized => Length == 0 ? new Vector2D(0, 0) : new Vector2D(this.X / this.Length, this.Y / this.Length);
 
 		/// <summary>
 		/// returns normal of this vector
@@ -106,7 +106,7 @@ namespace Sbazuo.Geometry {
 		}
 
 		/// <summary>
-		/// returns true, if vectors are callinear
+		/// returns true, if vectors are collinear
 		/// </summary>
 		public static bool AreCollinear(Vector2D a, Vector2D b) {
 			Vector2D aNorm = a.Normalized;
