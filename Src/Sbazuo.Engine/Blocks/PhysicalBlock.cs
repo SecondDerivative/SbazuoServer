@@ -20,13 +20,13 @@ namespace Sbazuo.Engine.Blocks {
 
 		}
 
-		public override IProjectileCollision HasCollision(IProjectile projectile, Vector2D motionVector) {
+		public override IProjectileCollision HasCollision(IProjectile projectile) {
 			if (!projectile.Shape.HasIntersection(Shape)) {
 				return null;
 			}
 			foreach (var s in Shape.Segments) {
 				if (Math.Abs(GeometryUtils.DistanceToSegment(projectile.Shape.Center, s)) < projectile.Shape.Radius) {
-					return new ProjectileSegmentCollision(projectile, this, motionVector, s);
+					return new ProjectileSegmentCollision(projectile, this, s);
 				}
 			}
 			throw new Exception("unknown collision data");

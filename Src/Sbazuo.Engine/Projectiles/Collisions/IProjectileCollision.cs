@@ -24,11 +24,6 @@ namespace Sbazuo.Engine.Projectiles.Collisions {
 		bool BreakingRuleApply { get; }
 
 		/// <summary>
-		/// returns a primary projectile motion vector
-		/// </summary>
-		Vector2D ProjectileMotionVector { get; }
-
-		/// <summary>
 		/// returns new projectile motion vector
 		/// </summary>
 		Vector2D CreateReflectionVector();

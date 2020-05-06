@@ -15,7 +15,7 @@ namespace Sbazuo.Engine.Projectiles {
 
 		public string OwnerId { get; }
 
-		public int Health { get; }
+		public int Health { get; set; }
 
 		public int MaxHealth { get; }
 

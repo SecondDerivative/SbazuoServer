@@ -15,8 +15,6 @@ namespace Sbazuo.Engine.Projectiles.Collisions {
 
 		public bool BreakingRuleApply => true;
 
-		public Vector2D ProjectileMotionVector { get; }
-
 		/// <summary>
 		/// block's segment collision member
 		/// </summary>
@@ -29,21 +27,20 @@ namespace Sbazuo.Engine.Projectiles.Collisions {
 		/// <param name="block"> second collision member </param>
 		/// <param name="projectileMotionVector"></param>
 		/// <param name="collisionSegment"> block's segment collision member </param>
-		public ProjectileSegmentCollision(IProjectile projectile, Block block, Vector2D projectileMotionVector, Segment2D collisionSegment) {
+		public ProjectileSegmentCollision(IProjectile projectile, Block block, Segment2D collisionSegment) {
 			this.Projectile = projectile;
 			this.Block = block;
-			this.ProjectileMotionVector = projectileMotionVector;
 			this.CollisionSegment = collisionSegment;
 		}
 
 		public Vector2D CreateReflectionVector() {
 			Vector2D segmentVector = new Vector2D(CollisionSegment.A, CollisionSegment.B);
-			double reflectionAngle = Vector2D.GetAngle(segmentVector, ProjectileMotionVector);
+			double reflectionAngle = Vector2D.GetAngle(segmentVector, Projectile.MotionVector);
 			double angleSign = Math.Sign(reflectionAngle);
 			reflectionAngle = Math.Abs(reflectionAngle);
 			reflectionAngle = Math.Min(reflectionAngle, Math.PI - reflectionAngle);
 			reflectionAngle *= angleSign;
-			return ProjectileMotionVector.GetRotatedVector(-2 * reflectionAngle); 
+			return Projectile.MotionVector.GetRotatedVector(-2 * reflectionAngle); 
 		}
 	}
 }
