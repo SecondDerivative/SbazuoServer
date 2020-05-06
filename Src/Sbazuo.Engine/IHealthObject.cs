@@ -8,7 +8,7 @@
 		/// <summary>
 		/// current health
 		/// </summary>
-		int Health { get; }
+		int Health { get; set; }
 
 		/// <summary>
 		/// maximal health

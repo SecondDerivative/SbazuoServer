@@ -1,7 +1,8 @@
 ﻿using Sbazuo.Engine.Blocks;
+using Sbazuo.Engine.GameActions;
 using Sbazuo.Engine.GameRules;
 using Sbazuo.Engine.Projectiles;
-using Sbazuo.Engine.Projectiles.ProjectileAliveConditions;
+using Sbazuo.Engine.Projectiles.AliveConditions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,14 +34,30 @@ namespace Sbazuo.Engine.GameControls {
 		public IProjectileAliveCondition ProjectileAliveCondition { get; private set; }
 
 		/// <summary>
+		/// gets current game action provider
+		/// </summary>
+		private readonly IGameActionProvider GameActionProvider;
+
+		public GameController() {
+			Blocks = new List<Block>();
+			Projectiles = new List<IProjectile>();
+			
+			ProjectileAliveConditionContainer aliveConditions = new ProjectileAliveConditionContainer();
+			aliveConditions.Add(new HealthAliveCondition());
+			ProjectileAliveCondition = aliveConditions;
+
+			GlobalGameRules = new List<IRule>();
+		}
+
+		/// <summary>
 		/// updating game state
 		/// </summary>
 		public void Update() {
-			List<IProjectile> localProjectiles = Projectiles.Where(x => ProjectileAliveCondition.IsAlive(this, x)).ToList();
+			Projectiles = Projectiles.Where(x => ProjectileAliveCondition.IsAlive(this, x)).ToList();
+			List<IProjectile> localProjectiles = Projectiles.ToList();
 			foreach (IProjectile proj in localProjectiles) {
-
+				new GameActionMoveProjectile(proj);
 			}
-			Projectiles = localProjectiles;
 		}
 
 	}

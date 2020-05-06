@@ -1,7 +1,7 @@
 ﻿using Sbazuo.Engine.GameControls;
 using System.Collections.Generic;
 
-namespace Sbazuo.Engine.Projectiles.ProjectileAliveConditions {
+namespace Sbazuo.Engine.Projectiles.AliveConditions {
 	public class ProjectileAliveConditionContainer : List<IProjectileAliveCondition>, IProjectileAliveCondition {
 
 		public bool IsAlive(GameController controller, IProjectile projectile) {

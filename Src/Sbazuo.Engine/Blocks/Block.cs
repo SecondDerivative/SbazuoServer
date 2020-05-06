@@ -2,6 +2,7 @@
 using Sbazuo.Engine.GameControls;
 using Sbazuo.Engine.GameRules;
 using Sbazuo.Engine.Projectiles;
+using Sbazuo.Engine.Projectiles.Collisions;
 using Sbazuo.Geometry;
 
 namespace Sbazuo.Engine.Blocks {
@@ -25,7 +26,7 @@ namespace Sbazuo.Engine.Blocks {
 		/// checks collision with projectile and returns collision data
 		/// </summary>
 		/// <returns> collision data or null, if hasn't collision </returns>
-		public abstract IProjectileCollision HasCollision(IProjectile projectile);
+		public abstract IProjectileCollision HasCollision(IProjectile projectile, Vector2D motionVector);
 
 		public abstract void ApplyToGameAction(GameAction action, GameController controller);
 	}

@@ -1,6 +1,6 @@
 ﻿using Sbazuo.Engine.GameControls;
 
-namespace Sbazuo.Engine.Projectiles.ProjectileAliveConditions {
+namespace Sbazuo.Engine.Projectiles.AliveConditions {
 
 	/// <summary>
 	/// represents condition

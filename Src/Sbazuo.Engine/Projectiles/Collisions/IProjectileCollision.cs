@@ -1,7 +1,7 @@
 ﻿using Sbazuo.Engine.Blocks;
 using Sbazuo.Geometry;
 
-namespace Sbazuo.Engine.Projectiles {
+namespace Sbazuo.Engine.Projectiles.Collisions {
 
 	/// <summary>
 	/// represents data about collision projectile and block
@@ -19,9 +19,14 @@ namespace Sbazuo.Engine.Projectiles {
 		Block Block { get; }
 
 		/// <summary>
-		/// if true, 
+		/// if true, foreach-loop will stop rule applying
 		/// </summary>
 		bool BreakingRuleApply { get; }
+
+		/// <summary>
+		/// returns a primary projectile motion vector
+		/// </summary>
+		Vector2D ProjectileMotionVector { get; }
 
 		/// <summary>
 		/// returns new projectile motion vector
