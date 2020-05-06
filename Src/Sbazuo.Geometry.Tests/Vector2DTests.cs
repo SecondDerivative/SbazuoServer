@@ -106,6 +106,9 @@ namespace Sbazuo.Geometry.Tests {
 			Vector2D b = new Vector2D(0, 1);
 			Assert.AreEqual(Math.PI / 2, Vector2D.GetAngle(a, b), GeometryUtils.Eps);
 			Assert.AreEqual(Math.PI / 2, Math.Abs(Vector2D.GetAngle(a, a.Normal)), GeometryUtils.Eps);
+			a = new Vector2D(1, 1);
+			b = new Vector2D(-1, 1);
+			Assert.AreEqual(-Math.PI / 2, Vector2D.GetAngle(b, a), GeometryUtils.Eps);
 		}
 
 		[TestMethod]

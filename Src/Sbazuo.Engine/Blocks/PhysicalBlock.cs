@@ -16,6 +16,11 @@ namespace Sbazuo.Engine.Blocks {
 
 		public int MaxHealth { get; }
 
+		public PhysicalBlock(string ownerId, Shape2D shape, int primaryHealth) : base(ownerId, shape) {
+			MaxHealth = primaryHealth;
+			Health = primaryHealth;
+		}
+
 		public override void ApplyToGameAction(GameAction action, GameController controller) {
 
 		}

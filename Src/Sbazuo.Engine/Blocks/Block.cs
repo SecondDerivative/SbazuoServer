@@ -22,6 +22,11 @@ namespace Sbazuo.Engine.Blocks {
 		/// </summary>
 		public readonly Shape2D Shape;
 
+		protected Block(string ownerId, Shape2D shape) {
+			this.OwnerId = ownerId;
+			this.Shape = shape;
+		}
+
 		/// <summary>
 		/// checks collision with projectile and returns collision data
 		/// </summary>
