@@ -45,6 +45,11 @@ namespace Sbazuo.Engine.GameControls {
 		public readonly IProjectileFactory ProjectileFactory;
 
 		/// <summary>
+		/// gets current block factory
+		/// </summary>
+		public readonly IBlockFactory BlockFactory;
+
+		/// <summary>
 		/// gets current players
 		/// </summary>
 		public ICollection<Player> Players { get; private set; }
@@ -61,6 +66,7 @@ namespace Sbazuo.Engine.GameControls {
 			GameActionProvider = new DefaultGameActionProvider(this);
 			Players = new List<Player>();
 			ProjectileFactory = new DefaultProjectileFactory();
+			BlockFactory = new DefaultBlockFactory();
 		}
 
 		/// <summary>
