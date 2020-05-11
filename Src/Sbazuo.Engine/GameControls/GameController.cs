@@ -1,5 +1,6 @@
 ﻿using Sbazuo.Engine.Blocks;
 using Sbazuo.Engine.GameActions;
+using Sbazuo.Engine.GameMods;
 using Sbazuo.Engine.GameRules;
 using Sbazuo.Engine.Players;
 using Sbazuo.Engine.Projectiles;
@@ -54,25 +55,30 @@ namespace Sbazuo.Engine.GameControls {
 		/// </summary>
 		public ICollection<Player> Players { get; private set; }
 
-		public GameController() {
-			Blocks = new List<Block>();
+		/// <summary>
+		/// gets current game mode
+		/// </summary>
+		protected readonly IGameMod GameMod;
+
+		public GameController(IGameMod gameMod, int playersCount) {
+			GameMod = gameMod;
+
+			Blocks = GameMod.PrimaryBlocks?.ToList() ?? new List<Block>();
+			GlobalGameRules = GameMod.PrimaryRules?.ToList() ?? new List<IRule>();
+			ProjectileAliveCondition = GameMod.ProjectileAliveCondition;
+
 			Projectiles = new List<IProjectile>();
 			
-			ProjectileAliveConditionContainer aliveConditions = new ProjectileAliveConditionContainer();
-			aliveConditions.Add(new HealthAliveCondition());
-			ProjectileAliveCondition = aliveConditions;
-
-			GlobalGameRules = new List<IRule>();
 			GameActionProvider = new DefaultGameActionProvider(this);
 			Players = new List<Player>();
-			ProjectileFactory = new DefaultProjectileFactory();
-			BlockFactory = new DefaultBlockFactory();
+			ProjectileFactory = GameMod.ProjectileFactory;
+			BlockFactory = GameMod.BlockFactory;
 		}
 
 		/// <summary>
 		/// updating game state
 		/// </summary>
-		public void Update() {
+		public virtual void Update() {
 			Projectiles = Projectiles.Where(x => ProjectileAliveCondition.IsAlive(this, x)).ToList();
 			List<IProjectile> localProjectiles = Projectiles.ToList();
 			foreach (IProjectile proj in localProjectiles) {
@@ -83,7 +89,7 @@ namespace Sbazuo.Engine.GameControls {
 		/// <summary>
 		/// register game action to execute
 		/// </summary>
-		public void ApplyAction(GameAction action) {
+		public virtual void ApplyAction(GameAction action) {
 			GameActionProvider.ApplyGameAction(action);
 		}
 
