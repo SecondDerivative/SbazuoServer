@@ -18,4 +18,4 @@
 
 | Методы | Параметры | Описание | Возвращаемое значение |
 | :----: | :-------: | -------- | :-------------------: |
-| *static* Distance | [Point2D](#Point2D) a, [Point2D](#Point2D) b | | ``double`` |
+| *static* Distance | [Point2D](#Point2D) a, [Point2D](#Point2D) b | Возвращает расстояние от точки A до точки B | ``double`` |
