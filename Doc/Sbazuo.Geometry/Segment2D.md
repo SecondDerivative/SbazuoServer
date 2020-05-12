@@ -14,4 +14,4 @@
 
 | Конструктор | Описание |
 | :---: | ----- |
-| Line2D([Point2D](Point2D.md) a, [Point2D](Point2D.md) b) | Создаёт отрезок с указанными концами |
+| Segment2D([Point2D](Point2D.md) a, [Point2D](Point2D.md) b) | Создаёт отрезок с указанными концами |

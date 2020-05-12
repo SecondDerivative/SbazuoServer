@@ -1,4 +1,4 @@
-# Line2D
+# Ray2D
 
 [Source code](../../Src/Sbazuo.Geometry/Ray2D.cs)
 
@@ -13,5 +13,5 @@
 
 | Конструктор | Описание |
 | :---: | ----- |
-| Line2D([Point2D](Point2D.md) linePoint, [Vector2D](Vector2D.md) lineDirection) | Создаёт луч с указанными началом и направлением |
-| Line2D([Point2D](Point2D.md) a, [Point2D](Point2D.md) b) | Создаёт луч с началом в точке A и проходящий через точку B |
+| Ray2D([Point2D](Point2D.md) startPoint, [Vector2D](Vector2D.md) direction) | Создаёт луч с указанными началом и направлением |
+| Ray2D([Point2D](Point2D.md) a, [Point2D](Point2D.md) b) | Создаёт луч с началом в точке A и проходящий через точку B |
