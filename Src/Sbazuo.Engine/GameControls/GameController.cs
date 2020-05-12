@@ -60,7 +60,7 @@ namespace Sbazuo.Engine.GameControls {
 		/// </summary>
 		protected readonly IGameMod GameMod;
 
-		public GameController(IGameMod gameMod, int playersCount) {
+		public GameController(IGameMod gameMod, IEnumerable<string> playerIds) {
 			GameMod = gameMod;
 
 			Blocks = GameMod.PrimaryBlocks?.ToList() ?? new List<Block>();

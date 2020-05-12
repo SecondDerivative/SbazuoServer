@@ -71,7 +71,7 @@ namespace Sbazuo.Engine.GameMods {
 		/// first value - player unique id
 		/// second value - player owning shape
 		/// </returns>
-		IEnumerable<KeyValuePair<string, Shape2D>> GetPlayerFields(int playerCount);
+		IEnumerable<KeyValuePair<string, Shape2D>> GetPlayerFields(IEnumerable<string> playerIds);
 
 		/// <summary>
 		/// returns player owning catapults
@@ -82,7 +82,7 @@ namespace Sbazuo.Engine.GameMods {
 		/// first value - player unique id
 		/// second value - player owning catapult position
 		/// </returns>
-		IEnumerable<KeyValuePair<string, Point2D>> GetPlayerCatapults(int playerCount);
+		IEnumerable<KeyValuePair<string, Point2D>> GetPlayerCatapults(IEnumerable<string> playerIds);
 
 	}
 }
