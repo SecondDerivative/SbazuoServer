@@ -68,9 +68,18 @@ namespace Sbazuo.Engine.GameControls {
 			ProjectileAliveCondition = GameMod.ProjectileAliveCondition;
 
 			Projectiles = new List<IProjectile>();
-			
+
 			GameActionProvider = new DefaultGameActionProvider(this);
+
 			Players = new List<Player>();
+			var shapes = gameMod.GetPlayerFields(playerIds);
+			var catapults = gameMod.GetPlayerCatapults(playerIds);
+			foreach (string id in playerIds) {
+				Player player = new Player(id);
+				player.CatapultPosition = catapults.Where(x => x.Key == id).First().Value;
+				player.OwnAreas = shapes.Where(x => x.Key == id).Select(x => x.Value).ToList();
+			}
+
 			ProjectileFactory = GameMod.ProjectileFactory;
 			BlockFactory = GameMod.BlockFactory;
 		}

@@ -1,4 +1,5 @@
 ﻿using Sbazuo.Geometry;
+using System.Collections.Generic;
 
 namespace Sbazuo.Engine.Players {
 
@@ -16,6 +17,11 @@ namespace Sbazuo.Engine.Players {
 		/// gets or sets projectile catapult position
 		/// </summary>
 		public Point2D CatapultPosition { get; set; }
+
+		/// <summary>
+		/// gets or sets player own area
+		/// </summary>
+		public ICollection<Shape2D> OwnAreas { get; set; }
 
 		/// <summary>
 		/// create new instance of <see cref="Player"/>
