@@ -4,6 +4,7 @@ using Sbazuo.Engine.GameControls;
 using Sbazuo.Engine.GameRules;
 using Sbazuo.Engine.Projectiles;
 using Sbazuo.Engine.Projectiles.AliveConditions;
+using Sbazuo.Engine.Shapes;
 using Sbazuo.Geometry;
 using System.Collections.Generic;
 
@@ -48,6 +49,11 @@ namespace Sbazuo.Engine.GameMods {
 		/// gets block factory for this game mode
 		/// </summary>
 		IBlockFactory BlockFactory { get; }
+
+		/// <summary>
+		/// gets shape factory for this game mode
+		/// </summary>
+		IShapeFactory ShapeFactory { get; }
 
 		/// <summary>
 		/// gets shape for this game mode

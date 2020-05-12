@@ -4,6 +4,7 @@ using Sbazuo.Engine.GameControls;
 using Sbazuo.Engine.GameRules;
 using Sbazuo.Engine.Projectiles;
 using Sbazuo.Engine.Projectiles.AliveConditions;
+using Sbazuo.Engine.Shapes;
 using Sbazuo.Geometry;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,8 @@ namespace Sbazuo.Engine.GameMods {
 		public IProjectileFactory ProjectileFactory => new DefaultProjectileFactory();
 
 		public IBlockFactory BlockFactory => new DefaultBlockFactory();
+
+		public IShapeFactory ShapeFactory => new DefaultShapeFactory();
 
 		public Shape2D GameField => new Shape2D(new Point2D[] { new Point2D(0, 0), new Point2D(GameFieldWidth, 0), new Point2D(GameFieldWidth, GameFieldHeight), new Point2D(0, GameFieldHeight) });
 
