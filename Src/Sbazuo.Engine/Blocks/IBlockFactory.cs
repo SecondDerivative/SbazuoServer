@@ -3,7 +3,7 @@
 namespace Sbazuo.Engine.Blocks {
 	public interface IBlockFactory {
 
-		Block CreateBlock(string ownerId, string blockId, Shape2D shape);
+		Block CreateBlock(string ownerId, string blockId, string shapeId, Point2D position);
 
 	}
 }

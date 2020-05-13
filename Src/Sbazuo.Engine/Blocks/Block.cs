@@ -3,6 +3,7 @@ using Sbazuo.Engine.GameControls;
 using Sbazuo.Engine.GameRules;
 using Sbazuo.Engine.Projectiles;
 using Sbazuo.Engine.Projectiles.Collisions;
+using Sbazuo.Engine.Shapes;
 using Sbazuo.Geometry;
 
 namespace Sbazuo.Engine.Blocks {
@@ -20,18 +21,24 @@ namespace Sbazuo.Engine.Blocks {
 		/// <summary>
 		/// block's shape
 		/// </summary>
-		public readonly Shape2D Shape;
+		public readonly string ShapeId;
 
-		protected Block(string ownerId, Shape2D shape) {
+		/// <summary>
+		/// block's position
+		/// </summary>
+		public readonly Point2D Position;
+
+		protected Block(string ownerId, string shapeId, Point2D position) {
 			this.OwnerId = ownerId;
-			this.Shape = shape;
+			this.ShapeId = shapeId;
+			this.Position = position;
 		}
 
 		/// <summary>
 		/// checks collision with projectile and returns collision data
 		/// </summary>
 		/// <returns> collision data or null, if hasn't collision </returns>
-		public abstract IProjectileCollision HasCollision(IProjectile projectile);
+		public abstract IProjectileCollision HasCollision(IShapeProvider shapeProvider, IProjectile projectile);
 
 		public abstract void ApplyToGameAction(GameAction action, GameController controller);
 	}

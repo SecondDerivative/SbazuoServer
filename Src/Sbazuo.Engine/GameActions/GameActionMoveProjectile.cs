@@ -35,7 +35,7 @@ namespace Sbazuo.Engine.GameActions {
 			});
 			// begin checks collision and correct motion vector
 			foreach (Block b in blocks) {
-				IProjectileCollision collision = b.HasCollision(Projectile);
+				IProjectileCollision collision = b.HasCollision(controller.ShapeProvider, Projectile);
 				if (collision == null) {
 					continue;
 				}

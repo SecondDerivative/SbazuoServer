@@ -44,17 +44,17 @@ namespace Sbazuo.Engine.GameControls {
 		/// <summary>
 		/// gets current projectile factory
 		/// </summary>
-		public readonly IProjectileFactory ProjectileFactory;
+		public IProjectileFactory ProjectileFactory => GameMod.ProjectileFactory;
 
 		/// <summary>
 		/// gets current block factory
 		/// </summary>
-		public readonly IBlockFactory BlockFactory;
+		public IBlockFactory BlockFactory => GameMod.BlockFactory;
 
 		/// <summary>
 		/// gets current shape factory
 		/// </summary>
-		public readonly IShapeFactory ShapeFactory;
+		public IShapeProvider ShapeProvider => GameMod.ShapeProvider;
 
 		/// <summary>
 		/// gets current players
@@ -66,6 +66,11 @@ namespace Sbazuo.Engine.GameControls {
 		/// </summary>
 		protected readonly IGameMod GameMod;
 
+		/// <summary>
+		/// create new instance of <see cref="GameController"/>
+		/// </summary>
+		/// <param name="gameMod"> current game mod </param>
+		/// <param name="playerIds"> enumerable of current game players </param>
 		public GameController(IGameMod gameMod, IEnumerable<string> playerIds) {
 			GameMod = gameMod;
 
@@ -85,10 +90,6 @@ namespace Sbazuo.Engine.GameControls {
 				player.CatapultPosition = catapults.Where(x => x.Key == id).First().Value;
 				player.OwnAreas = shapes.Where(x => x.Key == id).Select(x => x.Value).ToList();
 			}
-
-			ProjectileFactory = GameMod.ProjectileFactory;
-			BlockFactory = GameMod.BlockFactory;
-			ShapeFactory = GameMod.ShapeFactory;
 		}
 
 		/// <summary>

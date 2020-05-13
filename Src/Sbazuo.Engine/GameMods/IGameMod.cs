@@ -51,9 +51,9 @@ namespace Sbazuo.Engine.GameMods {
 		IBlockFactory BlockFactory { get; }
 
 		/// <summary>
-		/// gets shape factory for this game mode
+		/// gets shape provider for this game mode
 		/// </summary>
-		IShapeFactory ShapeFactory { get; }
+		IShapeProvider ShapeProvider { get; }
 
 		/// <summary>
 		/// gets shape for this game mode

@@ -32,7 +32,7 @@ namespace Sbazuo.Engine.GameMods {
 
 		public IBlockFactory BlockFactory => new DefaultBlockFactory();
 
-		public IShapeFactory ShapeFactory => new DefaultShapeFactory();
+		public IShapeProvider ShapeProvider => new DefaultShapeProvider();
 
 		public Shape2D GameField => new Shape2D(new Point2D[] { new Point2D(0, 0), new Point2D(GameFieldWidth, 0), new Point2D(GameFieldWidth, GameFieldHeight), new Point2D(0, GameFieldHeight) });
 

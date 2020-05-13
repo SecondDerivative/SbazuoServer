@@ -3,9 +3,9 @@
 namespace Sbazuo.Engine.Shapes {
 
 	/// <summary>
-	/// interface for shape factories
+	/// interface for shape providers
 	/// </summary>
-	public interface IShapeFactory {
+	public interface IShapeProvider {
 
 		/// <summary>
 		/// returns new instance of <see cref="Shape2D"/>
@@ -13,7 +13,7 @@ namespace Sbazuo.Engine.Shapes {
 		/// <param name="position"> shape position </param>
 		/// <param name="shapeId"> shape unique id </param>
 		/// <returns></returns>
-		Shape2D CreateShape(Point2D position, string shapeId);
+		Shape2D GetShape(Point2D position, string shapeId);
 
 	}
 }

@@ -37,7 +37,7 @@ namespace Sbazuo.Engine.GameActions {
 		}
 
 		public override void ApplyToGame(GameController controller) {
-			controller.Blocks.Add(controller.BlockFactory.CreateBlock(InstigatorId, BlockId, controller.ShapeFactory.CreateShape(Position, ShapeId)));
+			controller.Blocks.Add(controller.BlockFactory.CreateBlock(InstigatorId, BlockId, ShapeId, Position));
 		}
 
 	}
