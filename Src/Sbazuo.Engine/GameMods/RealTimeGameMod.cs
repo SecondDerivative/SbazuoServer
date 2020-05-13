@@ -5,6 +5,7 @@ using Sbazuo.Engine.GameRules;
 using Sbazuo.Engine.Projectiles;
 using Sbazuo.Engine.Projectiles.AliveConditions;
 using Sbazuo.Engine.Shapes;
+using Sbazuo.Engine.Triggers;
 using Sbazuo.Geometry;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace Sbazuo.Engine.GameMods {
 		public IEnumerable<Block> PrimaryBlocks => null;
 
 		public IEnumerable<IRule> PrimaryRules => null;
+
+		public IEnumerable<ITrigger> PrimaryTriggers => null;
 
 		public IProjectileAliveCondition ProjectileAliveCondition => new ProjectileAliveConditionContainer {
 			new HealthAliveCondition(),

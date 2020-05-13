@@ -6,6 +6,7 @@ using Sbazuo.Engine.Players;
 using Sbazuo.Engine.Projectiles;
 using Sbazuo.Engine.Projectiles.AliveConditions;
 using Sbazuo.Engine.Shapes;
+using Sbazuo.Engine.Triggers;
 using Sbazuo.Geometry;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,11 @@ namespace Sbazuo.Engine.GameControls {
 		/// gets players blocks
 		/// </summary>
 		public ICollection<Block> Blocks { get; private set; }
+
+		/// <summary>
+		/// gets current triggers
+		/// </summary>
+		public ICollection<ITrigger> Triggers { get; private set; }
 
 		/// <summary>
 		/// gets active projectiles
@@ -70,7 +76,7 @@ namespace Sbazuo.Engine.GameControls {
 		/// <summary>
 		/// gets current game mode
 		/// </summary>
-		protected readonly IGameMod GameMod;
+		public readonly IGameMod GameMod;
 
 		/// <summary>
 		/// create new instance of <see cref="GameController"/>
@@ -83,6 +89,7 @@ namespace Sbazuo.Engine.GameControls {
 			Blocks = GameMod.PrimaryBlocks?.ToList() ?? new List<Block>();
 			GlobalGameRules = GameMod.PrimaryRules?.ToList() ?? new List<IRule>();
 			ProjectileAliveCondition = GameMod.ProjectileAliveCondition;
+			Triggers = GameMod.PrimaryTriggers?.ToList() ?? new List<ITrigger>();
 
 			Projectiles = new List<IProjectile>();
 

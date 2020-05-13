@@ -31,6 +31,25 @@ namespace Sbazuo.Engine.GameActions {
 			foreach (var blockRule in controller.Blocks) {
 				blockRule.ApplyToGameAction(this, controller);
 			}
+			foreach (var projectile in controller.Projectiles) {
+				projectile.ApplyToGameAction(this, controller);
+			}
+		}
+
+		/// <summary>
+		/// apply triggers to this game action
+		/// </summary>
+		/// <param name="controller"></param>
+		public virtual void ApplyTriggers(GameController controller) {
+			foreach (var trigger in controller.Triggers) {
+				trigger.Consume(this, controller);
+			}
+			foreach (var block in controller.Blocks) {
+				block.Consume(this, controller);
+			}
+			foreach (var projectile in controller.Projectiles) {
+				projectile.Consume(this, controller);
+			}
 		}
 
 		/// <summary>

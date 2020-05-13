@@ -1,4 +1,5 @@
 ﻿using Sbazuo.Engine.GameRules;
+using Sbazuo.Engine.Triggers;
 using Sbazuo.Geometry;
 
 namespace Sbazuo.Engine.Projectiles {
@@ -6,7 +7,7 @@ namespace Sbazuo.Engine.Projectiles {
 	/// <summary>
 	/// represents information about projectile
 	/// </summary>
-	public interface IProjectile : IHealthObject, IRule {
+	public interface IProjectile : IHealthObject, IRule, ITrigger {
 
 		/// <summary>
 		/// gets or sets projectile motion vector

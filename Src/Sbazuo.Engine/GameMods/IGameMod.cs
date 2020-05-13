@@ -5,6 +5,7 @@ using Sbazuo.Engine.GameRules;
 using Sbazuo.Engine.Projectiles;
 using Sbazuo.Engine.Projectiles.AliveConditions;
 using Sbazuo.Engine.Shapes;
+using Sbazuo.Engine.Triggers;
 using Sbazuo.Geometry;
 using System.Collections.Generic;
 
@@ -24,6 +25,11 @@ namespace Sbazuo.Engine.GameMods {
 		/// gets primary game rules
 		/// </summary>
 		IEnumerable<IRule> PrimaryRules { get; }
+
+		/// <summary>
+		/// gets primary game triggers
+		/// </summary>
+		IEnumerable<ITrigger> PrimaryTriggers { get; }
 
 		/// <summary>
 		/// gets projectile alive condition

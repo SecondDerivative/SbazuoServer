@@ -33,5 +33,9 @@ namespace Sbazuo.Engine.Projectiles {
 		public void ApplyToGameAction(GameAction action, GameController controller) {
 
 		}
+
+		public void Consume(GameAction action, GameController controller) {
+			
+		}
 	}
 }

@@ -4,6 +4,7 @@ using Sbazuo.Engine.GameRules;
 using Sbazuo.Engine.Projectiles;
 using Sbazuo.Engine.Projectiles.Collisions;
 using Sbazuo.Engine.Shapes;
+using Sbazuo.Engine.Triggers;
 using Sbazuo.Geometry;
 
 namespace Sbazuo.Engine.Blocks {
@@ -11,7 +12,7 @@ namespace Sbazuo.Engine.Blocks {
 	/// <summary>
 	/// represents information about block
 	/// </summary>
-	public abstract class Block : IRule {
+	public abstract class Block : IRule, ITrigger {
 
 		/// <summary>
 		/// block owner player id
@@ -41,5 +42,7 @@ namespace Sbazuo.Engine.Blocks {
 		public abstract IProjectileCollision HasCollision(IShapeProvider shapeProvider, IProjectile projectile);
 
 		public abstract void ApplyToGameAction(GameAction action, GameController controller);
+
+		public abstract void Consume(GameAction action, GameController controller);
 	}
 }

@@ -38,5 +38,9 @@ namespace Sbazuo.Engine.Blocks {
 			}
 			throw new Exception("unknown collision data");
 		}
+
+		public override void Consume(GameAction action, GameController controller) {
+			
+		}
 	}
 }
