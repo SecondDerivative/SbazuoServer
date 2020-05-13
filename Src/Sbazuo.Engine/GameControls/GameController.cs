@@ -109,8 +109,15 @@ namespace Sbazuo.Engine.GameControls {
 		/// updating game state
 		/// </summary>
 		public virtual void Update() {
-			Projectiles = Projectiles.Where(x => ProjectileAliveCondition.IsAlive(this, x)).ToList();
+			//Projectiles = Projectiles.Where(x => ProjectileAliveCondition.IsAlive(this, x)).ToList();
 			List<IProjectile> localProjectiles = Projectiles.ToList();
+			foreach (var projectile in Projectiles) {
+				if (!ProjectileAliveCondition.IsAlive(this, projectile)) {
+					ApplyAction(new GameActionRemoveProjectile(projectile));
+				}
+			}
+
+			localProjectiles = Projectiles.ToList();
 			foreach (IProjectile proj in localProjectiles) {
 				GameActionProvider.ApplyGameAction(new GameActionMoveProjectile(proj));
 			}

@@ -96,5 +96,11 @@ namespace Sbazuo.Engine.GameMods {
 		/// </returns>
 		IEnumerable<KeyValuePair<string, Point2D>> GetPlayerCatapults(IEnumerable<string> playerIds);
 
+		/// <summary>
+		/// initialize game mod
+		/// </summary>
+		/// <param name="controller"></param>
+		void Init(GameController controller);
+
 	}
 }

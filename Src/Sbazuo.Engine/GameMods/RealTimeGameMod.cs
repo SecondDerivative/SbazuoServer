@@ -19,35 +19,35 @@ namespace Sbazuo.Engine.GameMods {
 	/// </summary>
 	public class RealTimeGameMod : IGameMod {
 
-		public IEnumerable<Block> PrimaryBlocks => null;
+		public virtual IEnumerable<Block> PrimaryBlocks => null;
 
-		public IEnumerable<IRule> PrimaryRules => null;
+		public virtual IEnumerable<IRule> PrimaryRules => null;
 
-		public IEnumerable<ITrigger> PrimaryTriggers => null;
+		public virtual IEnumerable<ITrigger> PrimaryTriggers => null;
 
-		public IProjectileAliveCondition ProjectileAliveCondition => new ProjectileAliveConditionContainer {
+		public virtual IProjectileAliveCondition ProjectileAliveCondition => new ProjectileAliveConditionContainer {
 			new HealthAliveCondition(),
 			new InnerGameFieldAliveCondition(),
 			new MotionAliveCondition()
 		};
 
-		public int MaxPlayers => 4;
+		public virtual int MaxPlayers => 4;
 
-		public int MinPlayers => 2;
+		public virtual int MinPlayers => 2;
 
-		public IProjectileFactory ProjectileFactory => new DefaultProjectileFactory();
+		public virtual IProjectileFactory ProjectileFactory => new DefaultProjectileFactory();
 
-		public IBlockFactory BlockFactory => new DefaultBlockFactory();
+		public virtual IBlockFactory BlockFactory => new DefaultBlockFactory();
 
-		public IShapeProvider ShapeProvider => new DefaultShapeProvider();
+		public virtual IShapeProvider ShapeProvider => new DefaultShapeProvider();
 
-		public Shape2D GameField => new Shape2D(new Point2D[] { new Point2D(0, 0), new Point2D(GameFieldWidth, 0), new Point2D(GameFieldWidth, GameFieldHeight), new Point2D(0, GameFieldHeight) });
+		public virtual Shape2D GameField => new Shape2D(new Point2D[] { new Point2D(0, 0), new Point2D(GameFieldWidth, 0), new Point2D(GameFieldWidth, GameFieldHeight), new Point2D(0, GameFieldHeight) });
 
 		public readonly int GameFieldWidth;
 
 		public readonly int GameFieldHeight;
 
-		public IEnumerable<KeyValuePair<string, Point2D>> GetPlayerCatapults(IEnumerable<string> playerIds) {
+		public virtual IEnumerable<KeyValuePair<string, Point2D>> GetPlayerCatapults(IEnumerable<string> playerIds) {
 			int playerCount = playerIds.Count();
 			if (playerCount < MinPlayers || playerCount > MaxPlayers) {
 				throw new ArgumentException("incorrect players count");
@@ -70,7 +70,7 @@ namespace Sbazuo.Engine.GameMods {
 			return result;
 		}
 
-		public IEnumerable<KeyValuePair<string, Shape2D>> GetPlayerFields(IEnumerable<string> playerIds) {
+		public virtual IEnumerable<KeyValuePair<string, Shape2D>> GetPlayerFields(IEnumerable<string> playerIds) {
 			int playerCount = playerIds.Count();
 			if (playerCount < MinPlayers || playerCount > MaxPlayers) {
 				throw new ArgumentException("incorrect players count");
@@ -90,8 +90,12 @@ namespace Sbazuo.Engine.GameMods {
 			return result;
 		}
 
-		public bool ValidateGameAction(GameController controller, GameAction action) {
+		public virtual bool ValidateGameAction(GameController controller, GameAction action) {
 			return true;
+		}
+
+		public virtual void Init(GameController controller) {
+			
 		}
 
 		/// <summary>
