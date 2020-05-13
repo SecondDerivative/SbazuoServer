@@ -22,7 +22,11 @@ namespace Sbazuo.Engine.GameMods {
 
 		public IEnumerable<IRule> PrimaryRules => null;
 
-		public IProjectileAliveCondition ProjectileAliveCondition => new HealthAliveCondition();
+		public IProjectileAliveCondition ProjectileAliveCondition => new ProjectileAliveConditionContainer {
+			new HealthAliveCondition(),
+			new InnerGameFieldAliveCondition(),
+			new MotionAliveCondition()
+		};
 
 		public int MaxPlayers => 4;
 

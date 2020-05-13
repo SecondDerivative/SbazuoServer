@@ -6,6 +6,7 @@ using Sbazuo.Engine.Players;
 using Sbazuo.Engine.Projectiles;
 using Sbazuo.Engine.Projectiles.AliveConditions;
 using Sbazuo.Engine.Shapes;
+using Sbazuo.Geometry;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -55,6 +56,11 @@ namespace Sbazuo.Engine.GameControls {
 		/// gets current shape factory
 		/// </summary>
 		public IShapeProvider ShapeProvider => GameMod.ShapeProvider;
+
+		/// <summary>
+		/// gets current game field
+		/// </summary>
+		public Shape2D GameField => GameMod.GameField;
 
 		/// <summary>
 		/// gets current players
