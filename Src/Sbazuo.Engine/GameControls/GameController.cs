@@ -1,5 +1,6 @@
 ﻿using Sbazuo.Engine.Blocks;
 using Sbazuo.Engine.GameActions;
+using Sbazuo.Engine.GameMaps;
 using Sbazuo.Engine.GameMods;
 using Sbazuo.Engine.GameRules;
 using Sbazuo.Engine.Players;
@@ -66,7 +67,7 @@ namespace Sbazuo.Engine.GameControls {
 		/// <summary>
 		/// gets current game field
 		/// </summary>
-		public Shape2D GameField => GameMod.GameField;
+		public Shape2D GameField => Map.GameField;
 
 		/// <summary>
 		/// gets current players
@@ -79,29 +80,36 @@ namespace Sbazuo.Engine.GameControls {
 		public readonly IGameMod GameMod;
 
 		/// <summary>
+		/// gets current game map
+		/// </summary>
+		public readonly GameMap Map;
+
+		/// <summary>
 		/// create new instance of <see cref="GameController"/>
 		/// </summary>
 		/// <param name="gameMod"> current game mod </param>
+		/// <param name="map"> game field </param>
 		/// <param name="playerIds"> enumerable of current game players </param>
-		public GameController(IGameMod gameMod, IEnumerable<string> playerIds) {
-			GameMod = gameMod;
+		public GameController(IGameMod gameMod, GameMap map, IEnumerable<string> playerIds) {
+			this.GameMod = gameMod;
+			this.Map = map;
 
-			Blocks = GameMod.PrimaryBlocks?.ToList() ?? new List<Block>();
-			GlobalGameRules = GameMod.PrimaryRules?.ToList() ?? new List<IRule>();
-			ProjectileAliveCondition = GameMod.ProjectileAliveCondition;
-			Triggers = GameMod.PrimaryTriggers?.ToList() ?? new List<ITrigger>();
+			this.Blocks = GameMod.PrimaryBlocks?.ToList() ?? new List<Block>();
+			this.GlobalGameRules = GameMod.PrimaryRules?.ToList() ?? new List<IRule>();
+			this.ProjectileAliveCondition = GameMod.ProjectileAliveCondition;
+			this.Triggers = GameMod.PrimaryTriggers?.ToList() ?? new List<ITrigger>();
 
-			Projectiles = new List<IProjectile>();
+			this.Projectiles = new List<IProjectile>();
 
-			GameActionProvider = new DefaultGameActionProvider(this);
+			this.GameActionProvider = new DefaultGameActionProvider(this);
 
-			Players = new List<Player>();
-			var shapes = gameMod.GetPlayerFields(playerIds);
-			var catapults = gameMod.GetPlayerCatapults(playerIds);
+			this.Players = new List<Player>();
+			var shapes = Map.GetPlayersAreas(playerIds);
+			var catapults = Map.GetPlayerCatapults(playerIds);
 			foreach (string id in playerIds) {
 				Player player = new Player(id);
 				player.CatapultPosition = catapults.Where(x => x.Key == id).First().Value;
-				player.OwnAreas = shapes.Where(x => x.Key == id).Select(x => x.Value).ToList();
+				player.OwnAreasIds = shapes.Where(x => x.Value == id).Select(x => x.Key).ToList();
 			}
 		}
 

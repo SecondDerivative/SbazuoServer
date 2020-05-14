@@ -62,39 +62,12 @@ namespace Sbazuo.Engine.GameMods {
 		IShapeProvider ShapeProvider { get; }
 
 		/// <summary>
-		/// gets shape for this game mode
-		/// </summary>
-		Shape2D GameField { get; }
-
-		/// <summary>
 		/// validating game action applying possibility
 		/// </summary>
 		/// <param name="controller"></param>
 		/// <param name="action"></param>
 		/// <returns> true, if game action can be applied </returns>
 		bool ValidateGameAction(GameController controller, GameAction action);
-
-		/// <summary>
-		/// returns player owning fields 
-		/// </summary>
-		/// <param name="playerCount"> counts of players in this game </param>
-		/// <returns>
-		/// enumerable of <see cref="KeyValuePair{TKey, TValue}"/>
-		/// first value - player unique id
-		/// second value - player owning shape
-		/// </returns>
-		IEnumerable<KeyValuePair<string, Shape2D>> GetPlayerFields(IEnumerable<string> playerIds);
-
-		/// <summary>
-		/// returns player owning catapults
-		/// </summary>
-		/// <param name="playerCount"> counts of players in this game </param>
-		/// <returns>
-		/// enumerable of <see cref="KeyValuePair{TKey, TValue}"/>
-		/// first value - player unique id
-		/// second value - player owning catapult position
-		/// </returns>
-		IEnumerable<KeyValuePair<string, Point2D>> GetPlayerCatapults(IEnumerable<string> playerIds);
 
 		/// <summary>
 		/// initialize game mod

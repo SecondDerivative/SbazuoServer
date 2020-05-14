@@ -14,10 +14,9 @@ namespace Sbazuo.Engine.GameMods {
 
 		public string CurrentPlayerId { get; private set; }
 
-
 		private int CurrentPlayerIndex = 0;
 
-		public ThreeStageGameMod(int fieldWidth, int fieldHeight) : base(fieldWidth, fieldHeight) {
+		public ThreeStageGameMod() : base() {
 
 		}
 

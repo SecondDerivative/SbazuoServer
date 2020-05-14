@@ -12,7 +12,7 @@ namespace Sbazuo.Engine.Tests.Projectiles.AliveConditions {
 
 		public void IsAliveTest() {
 			IProjectileAliveCondition condition = new HealthAliveCondition();
-			GameController controller = new GameController(CreationUtils.CreateDefaultGameMod(), new string[0]);
+			GameController controller = CreationUtils.CreateDefaultGame();
 			IProjectile projectile = new DefaultProjectile(new Circle2D(new Point2D(1, 1), 0.1), new Vector2D(), null, 100);
 			Assert.IsTrue(condition.IsAlive(controller, projectile));
 			projectile.Health = -1;

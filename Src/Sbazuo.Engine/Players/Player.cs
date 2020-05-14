@@ -19,9 +19,9 @@ namespace Sbazuo.Engine.Players {
 		public Point2D CatapultPosition { get; set; }
 
 		/// <summary>
-		/// gets or sets player own area
+		/// gets or sets player own area's id
 		/// </summary>
-		public ICollection<Shape2D> OwnAreas { get; set; }
+		public ICollection<string> OwnAreasIds { get; set; }
 
 		/// <summary>
 		/// create new instance of <see cref="Player"/>
@@ -29,6 +29,7 @@ namespace Sbazuo.Engine.Players {
 		/// <param name="id"> player's unique id </param>
 		public Player(string id) {
 			this.Id = id;
+			OwnAreasIds = new List<string>();
 		}
 
 
