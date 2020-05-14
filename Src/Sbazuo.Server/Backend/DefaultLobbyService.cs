@@ -1,31 +1,32 @@
-﻿using Sbazuo.Server.Backend.Rooms;
+﻿using Sbazuo.Server.Backend.Lobbies;
 using Sbazuo.Server.Utils;
 using System.Collections.Generic;
 
 namespace Sbazuo.Server.Backend {
-	public class DefaultRoomProvider : IRoomProvider {
+	public class DefaultLobbyService : ILobbyService {
 
 		private IDictionary<string, string> SessionIdToRoomId;
 
-		private IDictionary<string, Room> Rooms;
+		private IDictionary<string, Lobby> Rooms;
 
-		public IEnumerable<Room> CreatedRooms => this.Rooms.Values;
+		public IEnumerable<Lobby> CreatedLobbies => this.Rooms.Values;
 
-		public int RoomsCount => Rooms.Count;
+		public int LobbiesCount => Rooms.Count;
 
-		public DefaultRoomProvider() {
+		public DefaultLobbyService() {
 			SessionIdToRoomId = new Dictionary<string, string>();
-			Rooms = new Dictionary<string, Room>();
+			Rooms = new Dictionary<string, Lobby>();
 		}
 
-		public Room CreateRoom(string sessionId) {
-			Room createdRoom = new Room(StringGenerator.GenerateString());
+		public Lobby CreateLobby(string sessionId, string lobbyName) {
+			Lobby createdRoom = new Lobby(StringGenerator.GenerateString(), lobbyName);
+			createdRoom.AddPlayer(sessionId);
 			Rooms.Add(createdRoom.Id, createdRoom);
 			
 			return createdRoom;
 		}
 
-		public Room GetSessionRoom(string sessionId) {
+		public Lobby GetSessionRoom(string sessionId) {
 			throw new System.NotImplementedException();
 		}
 
@@ -37,7 +38,7 @@ namespace Sbazuo.Server.Backend {
 			return Rooms[roomId].AddPlayer(sessionId);
 		}
 
-		public void LeaveRoom(string sessionId) {
+		public void LeaveLobby(string sessionId) {
 			InternalLeaveRoom(sessionId);
 		}
 
