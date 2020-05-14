@@ -81,8 +81,8 @@ namespace Sbazuo.Geometry {
 				result = Min(result, Abs(DistanceToLine(segment.A, new Line2D(ray.StartPoint, ray.RayDirection))));
 			}
 			result = Min(result, Abs(DistanceToSegment(ray.StartPoint, segment)));
-			if (Vector2D.VectorProduct(ca, ray.RayDirection) * Vector2D.VectorProduct(ca, cb) >= 0 
-				&& Vector2D.VectorProduct(cb, ray.RayDirection) * Vector2D.VectorProduct(cb, ca) >= 0 
+			if (Vector2D.VectorProduct(ca, ray.RayDirection) * Vector2D.VectorProduct(ca, cb) >= 0
+				&& Vector2D.VectorProduct(cb, ray.RayDirection) * Vector2D.VectorProduct(cb, ca) >= 0
 				&& Sign(Vector2D.GetAngle(ray.RayDirection, ca)) != Sign(Vector2D.GetAngle(ray.RayDirection, cb))) {
 
 				return 0;

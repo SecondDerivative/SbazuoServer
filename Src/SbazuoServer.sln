@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sbazuo.Geometry", "Sbazuo.G
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sbazuo.Geometry.Tests", "Sbazuo.Geometry.Tests\Sbazuo.Geometry.Tests.csproj", "{E7475DFE-5CC1-4337-B9FE-EFAA3C5E69A2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sbazuo.Engine", "Sbazuo.Engine\Sbazuo.Engine.csproj", "{492ED53B-DDFE-44D5-ACC2-35C45C58B1E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sbazuo.Engine.Tests", "Sbazuo.Engine.Tests\Sbazuo.Engine.Tests.csproj", "{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{E7475DFE-5CC1-4337-B9FE-EFAA3C5E69A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7475DFE-5CC1-4337-B9FE-EFAA3C5E69A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7475DFE-5CC1-4337-B9FE-EFAA3C5E69A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{492ED53B-DDFE-44D5-ACC2-35C45C58B1E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{492ED53B-DDFE-44D5-ACC2-35C45C58B1E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{492ED53B-DDFE-44D5-ACC2-35C45C58B1E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{492ED53B-DDFE-44D5-ACC2-35C45C58B1E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
