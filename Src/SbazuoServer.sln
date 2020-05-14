@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SbazuoServer", "SbazuoServer\SbazuoServer.csproj", "{A6E65736-B085-4B9D-A398-71EB71809634}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sbazuo.Server", "Sbazuo.Server\Sbazuo.Server.csproj", "{A6E65736-B085-4B9D-A398-71EB71809634}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sbazuo.Geometry", "Sbazuo.Geometry\Sbazuo.Geometry.csproj", "{66AF72A9-31ED-4EDE-ADC5-772552F0AE06}"
 EndProject
@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sbazuo.Geometry.Tests", "Sb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sbazuo.Engine", "Sbazuo.Engine\Sbazuo.Engine.csproj", "{492ED53B-DDFE-44D5-ACC2-35C45C58B1E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sbazuo.Engine.Tests", "Sbazuo.Engine.Tests\Sbazuo.Engine.Tests.csproj", "{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sbazuo.Engine.Tests", "Sbazuo.Engine.Tests\Sbazuo.Engine.Tests.csproj", "{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
