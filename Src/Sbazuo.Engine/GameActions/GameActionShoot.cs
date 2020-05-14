@@ -9,12 +9,24 @@ namespace Sbazuo.Engine.GameActions {
 	/// </summary>
 	public class GameActionShoot : GameAction {
 
+		/// <summary>
+		/// created projectile id
+		/// </summary>
 		public readonly string ProjectileId;
 
+		/// <summary>
+		/// projectile velocity multiphier
+		/// </summary>
 		public double VelocityMult { get; set; }
 
+		/// <summary>
+		/// projectile motion angle
+		/// </summary>
 		public readonly double MotionAngle;
 
+		/// <summary>
+		/// create new instance of <see cref="GameActionShoot"/>
+		/// </summary>
 		public GameActionShoot(string instigatorId, string projectileId, double motionAngle, double velocityMult) : base(instigatorId) {
 			this.ProjectileId = projectileId;
 			this.VelocityMult = velocityMult;

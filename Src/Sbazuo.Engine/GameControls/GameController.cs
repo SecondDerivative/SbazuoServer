@@ -110,6 +110,7 @@ namespace Sbazuo.Engine.GameControls {
 				Player player = new Player(id);
 				player.CatapultPosition = catapults.Where(x => x.Key == id).First().Value;
 				player.OwnAreasIds = shapes.Where(x => x.Value == id).Select(x => x.Key).ToList();
+				Players.Add(player);
 			}
 		}
 

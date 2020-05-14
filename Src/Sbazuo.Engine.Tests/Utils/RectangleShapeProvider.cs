@@ -1,7 +1,5 @@
 ﻿using Sbazuo.Engine.Shapes;
 using Sbazuo.Geometry;
-using System;
-using System.Collections.Generic;
 
 namespace Sbazuo.Engine.Tests.Utils {
 	internal class RectangleShapeProvider : IShapeProvider {
