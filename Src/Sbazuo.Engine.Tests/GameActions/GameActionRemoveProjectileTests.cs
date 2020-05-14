@@ -20,14 +20,35 @@ namespace Sbazuo.Engine.Tests.GameActions {
 		[TestMethod]
 		public void ApplyTest() {
 			GameController controller = CreationUtils.CreateDefaultGame();
-			int primaryPorjectilesCount = controller.Projectiles.Count;
+			int primaryProjectilesCount = controller.Projectiles.Count;
 			IProjectile removedProjectile = CreationUtils.CreateDefaultProjectile();
 			controller.Projectiles.Add(removedProjectile);
-			Assert.AreEqual(primaryPorjectilesCount + 1, controller.Projectiles.Count);
+			Assert.AreEqual(primaryProjectilesCount + 1, controller.Projectiles.Count);
 
 			GameActionRemoveProjectile action = new GameActionRemoveProjectile(removedProjectile);
 			controller.ApplyAction(action);
-			Assert.AreEqual(primaryPorjectilesCount, controller.Projectiles.Count);
+			Assert.AreEqual(primaryProjectilesCount, controller.Projectiles.Count);
+		}
+
+		[TestMethod]
+		public void ApplyToMultiProjectilesTest() {
+			GameController controller = CreationUtils.CreateDefaultGame();
+			int primaryProjectilesCount = controller.Projectiles.Count;
+
+			IProjectile validProjectile = CreationUtils.CreateDefaultProjectile();
+			IProjectile invalidProjectile = CreationUtils.CreateDefaultProjectile();
+
+			controller.Projectiles.Add(validProjectile);
+			controller.Projectiles.Add(invalidProjectile);
+
+			Assert.AreEqual(primaryProjectilesCount + 2, controller.Projectiles.Count);
+
+			GameActionRemoveProjectile action = new GameActionRemoveProjectile(invalidProjectile);
+			controller.ApplyAction(action);
+
+			Assert.AreEqual(primaryProjectilesCount + 1, controller.Projectiles.Count);
+			Assert.IsTrue(controller.Projectiles.Contains(validProjectile));
+			Assert.IsFalse(controller.Projectiles.Contains(invalidProjectile));
 		}
 
 	}

@@ -14,7 +14,7 @@ namespace Sbazuo.Engine.Tests.Utils {
 		}
 
 		internal static IProjectile CreateDefaultProjectile() {
-			return new DefaultProjectile(new Circle2D(new Point2D(1, 1), 0.1), new Vector2D(1, 0), "a", 100);
+			return new DefaultProjectile(new Circle2D(new Point2D(10, 10), 0.1), new Vector2D(1, 0), "a", 100);
 		}
 
 		internal static GameController CreateDefaultGame() {

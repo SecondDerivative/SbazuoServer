@@ -120,7 +120,7 @@ namespace Sbazuo.Engine.GameControls {
 		public virtual void Update() {
 			//Projectiles = Projectiles.Where(x => ProjectileAliveCondition.IsAlive(this, x)).ToList();
 			List<IProjectile> localProjectiles = Projectiles.ToList();
-			foreach (var projectile in Projectiles) {
+			foreach (var projectile in localProjectiles) {
 				if (!ProjectileAliveCondition.IsAlive(this, projectile)) {
 					ApplyAction(new GameActionRemoveProjectile(projectile));
 				}
