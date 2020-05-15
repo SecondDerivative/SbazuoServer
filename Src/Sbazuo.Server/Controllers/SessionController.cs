@@ -10,29 +10,29 @@ namespace Sbazuo.Server.Controllers {
 	[Controller]
 	public class SessionController : Controller {
 
-		private readonly ISessionService SessionProvider;
+		private readonly ISessionService SessionService;
 
 		private readonly ILobbyService LobbyService;
 
 		private readonly IConverterContractResolver ModelConverter;
 
 		public SessionController(ISessionService sessionProvider, ILobbyService lobbyService, IConverterContractResolver resolver) : base() {
-			this.SessionProvider = sessionProvider;
+			this.SessionService = sessionProvider;
 			this.LobbyService = lobbyService;
 			this.ModelConverter = resolver;
 		}
 
 		[HttpGet]
 		public PlayerInfo[] GetPlayers(string sessionToken) {
-			if (SessionProvider.ValidateSessionToken(sessionToken)) {
+			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
-			return ModelConverter.ConvertCollection<AccountPublicInfo, PlayerInfo>(SessionProvider.GetPlayers());
+			return ModelConverter.ConvertCollection<AccountPublicInfo, PlayerInfo>(SessionService.GetPlayers());
 		}
 
 		[HttpGet]
 		public LobbyInfo[] GetLobbies(string sessionToken) {
-			if (SessionProvider.ValidateSessionToken(sessionToken)) {
+			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
 			return ModelConverter.ConvertCollection<Lobby, LobbyInfo>(LobbyService.CreatedLobbies);
@@ -40,18 +40,26 @@ namespace Sbazuo.Server.Controllers {
 
 		[HttpGet]
 		public LobbyInfo CreateLobby(string sessionToken, string lobbyName) {
-			if (SessionProvider.ValidateSessionToken(sessionToken)) {
+			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
-			return ModelConverter.Convert<Lobby, LobbyInfo>(LobbyService.CreateLobby(sessionToken, lobbyName));
+			return ModelConverter.Convert<Lobby, LobbyInfo>(LobbyService.CreateLobby(SessionService.GetPlayerNicknameBySessionToken(sessionToken), lobbyName));
 		}
 
 		[HttpGet]
 		public JoinResponce JoinLobby(string sessionToken, string lobbyId) {
-			if (SessionProvider.ValidateSessionToken(sessionToken)) {
+			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
 			return new JoinResponce() { PlayerId = LobbyService.Join(sessionToken, lobbyId), Token = sessionToken };
+		}
+
+		[HttpGet]
+		public void LeaveLobby(string sessionToken) {
+			if (!SessionService.ValidateSessionToken(sessionToken)) {
+				return;
+			}
+			LobbyService.LeaveLobby(SessionService.GetPlayerNicknameBySessionToken(sessionToken));
 		}
 
 	}

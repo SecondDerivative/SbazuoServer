@@ -20,7 +20,7 @@ namespace Sbazuo.Server.Backend {
 
 		public Lobby CreateLobby(string playerNickname, string lobbyName) {
 			Lobby createdRoom = new Lobby(StringGenerator.GenerateString(), lobbyName, playerNickname);
-			createdRoom.AddPlayer(playerNickname);
+			//createdRoom.AddPlayer(playerNickname);
 			Lobbies.Add(createdRoom.Id, createdRoom);
 			
 			return createdRoom;

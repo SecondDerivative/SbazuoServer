@@ -22,7 +22,7 @@ namespace Sbazuo.Server.Models.Converters.Contracts {
 				.Append(convertedType)
 				//.Distinct()
 				.ToArray();
-			Console.WriteLine("total found possible types " + possibleTypes.Length);
+			//Console.WriteLine("total found possible types " + possibleTypes.Length);
 			foreach (var type in possibleTypes) {
 				AllowConvertAttribute allowedTypes = type.GetCustomAttribute<AllowConvertAttribute>();
 				ModelConverterAttribute converterAttribute = type.GetCustomAttribute<ModelConverterAttribute>();
@@ -30,11 +30,11 @@ namespace Sbazuo.Server.Models.Converters.Contracts {
 					continue;
 				}
 				if (allowedTypes.ConvertedType.Where(x => x == modelType).Count() > 0) {
-					Console.WriteLine("founded converter " + converterAttribute.ConverterType.FullName + " begin convert");
+					//Console.WriteLine("founded converter " + converterAttribute.ConverterType.FullName + " begin convert");
 					return (Activator.CreateInstance(converterAttribute.ConverterType) as IConverter).Convert(model);
 				}
 			}
-			Console.WriteLine("converters not found");
+			//Console.WriteLine("converters not found");
 			return default;
 		}
 

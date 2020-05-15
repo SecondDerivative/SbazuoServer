@@ -11,6 +11,10 @@ namespace Sbazuo.Server.Backend.Accounts {
 		public MemoryOnlyAccountDataProvider() {
 			PublicInfos = new Dictionary<string, AccountPublicInfo>();
 			SecureInfos = new Dictionary<string, AccountSecureInfo>();
+#if DEBUG
+			PublicInfos.Add("login", new AccountPublicInfo() { Nickname = "login" });
+			SecureInfos.Add("login", new AccountSecureInfo() { Nickname = "login", PasswordHash = "12345" });
+#endif
 		}
 
 		public void CreateAccount(string nickname, string password) {
