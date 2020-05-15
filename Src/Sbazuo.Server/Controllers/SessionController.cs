@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sbazuo.Server.Backend;
-using Sbazuo.Server.Backend.Accounts;
-using Sbazuo.Server.Backend.Lobbies;
-using Sbazuo.Server.Models.Converters;
+using Sbazuo.Server.Models.Accounts;
+using Sbazuo.Server.Models.Converters.Contracts;
+using Sbazuo.Server.Models.Lobbies;
 using Sbazuo.Server.Models.Responces;
 
 namespace Sbazuo.Server.Controllers {
@@ -27,7 +27,7 @@ namespace Sbazuo.Server.Controllers {
 			if (SessionProvider.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
-			return ModelConverter.ConvertCollection<AccountPublicInfo, PlayerInfo>(SessionProvider.GetPlayers(sessionToken));
+			return ModelConverter.ConvertCollection<AccountPublicInfo, PlayerInfo>(SessionProvider.GetPlayers());
 		}
 
 		[HttpGet]

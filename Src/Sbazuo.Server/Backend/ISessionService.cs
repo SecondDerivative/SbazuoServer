@@ -1,4 +1,4 @@
-﻿using Sbazuo.Server.Backend.Accounts;
+﻿using Sbazuo.Server.Models.Accounts;
 using System.Collections.Generic;
 
 namespace Sbazuo.Server.Backend {
@@ -33,7 +33,7 @@ namespace Sbazuo.Server.Backend {
 		/// </summary>
 		/// <param name="sessionToken"></param>
 		/// <returns></returns>
-		IEnumerable<AccountPublicInfo> GetPlayers(string sessionToken);
+		IEnumerable<AccountPublicInfo> GetPlayers();
 
 	}
 }

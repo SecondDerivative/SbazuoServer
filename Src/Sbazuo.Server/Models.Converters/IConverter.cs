@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace Sbazuo.Server.Models.Converters {
+	public interface IConverter {
 
-namespace Sbazuo.Server.Models.Converters {
-	interface IConverter {
-
-
+		object Convert(object model);
 
 	}
 }

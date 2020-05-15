@@ -1,52 +1,67 @@
-﻿using Sbazuo.Server.Backend.Lobbies;
+﻿using Sbazuo.Server.Models.Lobbies;
 using Sbazuo.Server.Utils;
 using System.Collections.Generic;
 
 namespace Sbazuo.Server.Backend {
 	public class DefaultLobbyService : ILobbyService {
 
-		private IDictionary<string, string> SessionIdToRoomId;
+		private IDictionary<string, string> PlayerNicknameToRoomId;
 
-		private IDictionary<string, Lobby> Rooms;
+		private IDictionary<string, Lobby> Lobbies;
 
-		public IEnumerable<Lobby> CreatedLobbies => this.Rooms.Values;
+		public IEnumerable<Lobby> CreatedLobbies => this.Lobbies.Values;
 
-		public int LobbiesCount => Rooms.Count;
+		public int LobbiesCount => Lobbies.Count;
 
 		public DefaultLobbyService() {
-			SessionIdToRoomId = new Dictionary<string, string>();
-			Rooms = new Dictionary<string, Lobby>();
+			PlayerNicknameToRoomId = new Dictionary<string, string>();
+			Lobbies = new Dictionary<string, Lobby>();
 		}
 
-		public Lobby CreateLobby(string sessionId, string lobbyName) {
-			Lobby createdRoom = new Lobby(StringGenerator.GenerateString(), lobbyName);
-			createdRoom.AddPlayer(sessionId);
-			Rooms.Add(createdRoom.Id, createdRoom);
+		public Lobby CreateLobby(string playerNickname, string lobbyName) {
+			Lobby createdRoom = new Lobby(StringGenerator.GenerateString(), lobbyName, playerNickname);
+			createdRoom.AddPlayer(playerNickname);
+			Lobbies.Add(createdRoom.Id, createdRoom);
 			
 			return createdRoom;
 		}
 
-		public Lobby GetSessionRoom(string sessionId) {
-			throw new System.NotImplementedException();
-		}
-
-		public string Join(string sessionId, string roomId) {
-			InternalLeaveRoom(sessionId);
-			if (!Rooms.ContainsKey(roomId)) {
+		public Lobby GetLobbyByPlayerNickname(string playerNickname) {
+			if (!PlayerNicknameToRoomId.ContainsKey(playerNickname)) {
 				return null;
 			}
-			return Rooms[roomId].AddPlayer(sessionId);
+			string lobbyId = PlayerNicknameToRoomId[playerNickname];
+			if (!Lobbies.ContainsKey(lobbyId)) {
+				return null;
+			}
+			return Lobbies[lobbyId];
+		}
+
+		public string Join(string playerNickname, string lobbyId) {
+			InternalLeaveLobby(playerNickname);
+			if (!Lobbies.ContainsKey(lobbyId)) {
+				return null;
+			}
+			return Lobbies[lobbyId].AddPlayer(playerNickname);
 		}
 
 		public void LeaveLobby(string sessionId) {
-			InternalLeaveRoom(sessionId);
+			InternalLeaveLobby(sessionId);
 		}
 
-		private void InternalLeaveRoom(string sessionId) {
-			if (!SessionIdToRoomId.ContainsKey(sessionId)) {
+		private void InternalLeaveLobby(string playerNickname) {
+			if (!PlayerNicknameToRoomId.ContainsKey(playerNickname)) {
 				return;
 			}
-			SessionIdToRoomId.Remove(sessionId);
+			string lobbyId = PlayerNicknameToRoomId[playerNickname];
+			PlayerNicknameToRoomId.Remove(playerNickname);
+			if (Lobbies[lobbyId].PlayersCount == 0) {
+				Lobbies.Remove(lobbyId);
+			}
+		}
+
+		public void StartLobby(string sessionId) {
+			
 		}
 	}
 }

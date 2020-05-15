@@ -1,16 +1,12 @@
-﻿using Sbazuo.Server.Backend;
-using Sbazuo.Server.Backend.Lobbies;
+﻿using Sbazuo.Server.Models.Lobbies;
 using Sbazuo.Server.Models.Responces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Sbazuo.Server.Models.Converters {
-	public class LobbyConverter {
+	public class LobbyConverter : IConverter {
 
-		public LobbyInfo Convert(ISessionService sessionProvider, Lobby lobby) {
-			return new LobbyInfo() { CreatorNickname = "", LobbyName = "", MapId = lobby.MapId, ModId = lobby.ModId, PlayerNicks = lobby. }
+		public object Convert(object model) {
+			Lobby lobby = model as Lobby;
+			return new LobbyInfo() { Id = lobby.Id, CreatorNickname = lobby.CreatorNick, LobbyName = lobby.LobbyName, MapId = lobby.MapId, ModId = lobby.ModId, PlayerNicks = lobby.PlayerNicknames };
 		}
 
 	}

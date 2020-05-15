@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sbazuo.Engine", "Sbazuo.Eng
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sbazuo.Engine.Tests", "Sbazuo.Engine.Tests\Sbazuo.Engine.Tests.csproj", "{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sbazuo.Server.Tests", "Sbazuo.Server.Tests\Sbazuo.Server.Tests.csproj", "{757A8ECF-75A9-4B6D-835A-688882FDACCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C55CF2D-CE63-4199-ACF8-4E5A8BFA96DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{757A8ECF-75A9-4B6D-835A-688882FDACCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757A8ECF-75A9-4B6D-835A-688882FDACCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757A8ECF-75A9-4B6D-835A-688882FDACCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757A8ECF-75A9-4B6D-835A-688882FDACCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

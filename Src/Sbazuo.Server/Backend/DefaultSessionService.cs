@@ -1,10 +1,8 @@
-﻿using Sbazuo.Server.Backend.Accounts;
+﻿using Sbazuo.Server.Models.Accounts;
 using Sbazuo.Server.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sbazuo.Server.Backend {
 	public class DefaultSessionService : ISessionService {
@@ -40,5 +38,8 @@ namespace Sbazuo.Server.Backend {
 			return OnlinePlayers.Where(x => x.Value == sessionToken).FirstOrDefault().Key;
 		}
 
+		public IEnumerable<AccountPublicInfo> GetPlayers() {
+			throw new NotImplementedException();
+		}
 	}
 }

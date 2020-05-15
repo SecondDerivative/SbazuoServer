@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Sbazuo.Server.Backend.Lobbies {
+namespace Sbazuo.Server.Models.Lobbies {
 
 	public enum LobbyStatus {
 

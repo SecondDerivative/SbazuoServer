@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Sbazuo.Server.Models.Accounts;
+using System.Collections.Generic;
 
 namespace Sbazuo.Server.Backend.Accounts {
 	public class MemoryOnlyAccountDataProvider : IAccountDataProvider {

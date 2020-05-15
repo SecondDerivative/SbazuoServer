@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sbazuo.Server.Backend;
-using Sbazuo.Server.Models.Converters;
+using Sbazuo.Server.Models.Converters.Contracts;
 
 namespace SbazuoServer {
 	public class Startup {

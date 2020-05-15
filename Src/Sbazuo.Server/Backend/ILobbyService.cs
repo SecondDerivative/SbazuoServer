@@ -1,4 +1,4 @@
-﻿using Sbazuo.Server.Backend.Lobbies;
+﻿using Sbazuo.Server.Models.Lobbies;
 using System.Collections.Generic;
 
 namespace Sbazuo.Server.Backend {
@@ -17,36 +17,36 @@ namespace Sbazuo.Server.Backend {
 		/// <summary>
 		/// join session in room
 		/// </summary>
-		/// <param name="sessionId"> </param>
+		/// <param name="playerNickname"> </param>
 		/// <param name="roomId"> room's unique id </param>
 		/// <returns> unique player's id </returns>
-		string Join(string sessionId, string roomId);
+		string Join(string playerNickname, string roomId);
 
 		/// <summary>
 		/// leave session from room
 		/// </summary>
-		/// <param name="sessionId"></param>
-		void LeaveLobby(string sessionId);
+		/// <param name="playerNickname"></param>
+		void LeaveLobby(string playerNickname);
 
 		/// <summary>
 		/// creating new room
 		/// </summary>
-		/// <param name="sessionId"></param>
+		/// <param name="playerNickname"></param>
 		/// <returns> created room </returns>
-		Lobby CreateLobby(string sessionId, string lobbyName);
+		Lobby CreateLobby(string playerNickname, string lobbyName);
 
 		/// <summary>
-		/// returns room, which contains session
+		/// returns room, which contains player
 		/// </summary>
-		/// <param name="sessionId"></param>
+		/// <param name="playerNickname"></param>
 		/// <returns></returns>
-		Lobby GetSessionRoom(string sessionId);
+		Lobby GetLobbyByPlayerNickname(string playerNickname);
 
 		/// <summary>
 		/// starts game in lobby
 		/// </summary>
 		/// <param name="sessionId"></param>
-		void StartLobby(string sessionId);
+		void StartLobby(string playerNickname);
 
 	}
 }

@@ -1,5 +1,5 @@
-﻿namespace Sbazuo.Server.Backend.Accounts {
-	
+﻿namespace Sbazuo.Server.Models.Accounts {
+
 	public class AccountSecureInfo {
 
 		public string Nickname { get; set; }
