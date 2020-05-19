@@ -20,9 +20,8 @@ namespace Sbazuo.Server.Backend {
 
 		public Lobby CreateLobby(string playerNickname, string lobbyName) {
 			Lobby createdRoom = new Lobby(StringGenerator.GenerateString(), lobbyName, playerNickname);
-			//createdRoom.AddPlayer(playerNickname);
 			Lobbies.Add(createdRoom.Id, createdRoom);
-			
+			PlayerNicknameToRoomId.Add(playerNickname, createdRoom.Id);
 			return createdRoom;
 		}
 
@@ -42,11 +41,12 @@ namespace Sbazuo.Server.Backend {
 			if (!Lobbies.ContainsKey(lobbyId)) {
 				return null;
 			}
+			PlayerNicknameToRoomId.Add(playerNickname, lobbyId);
 			return Lobbies[lobbyId].AddPlayer(playerNickname);
 		}
 
-		public void LeaveLobby(string sessionId) {
-			InternalLeaveLobby(sessionId);
+		public void LeaveLobby(string playerNickname) {
+			InternalLeaveLobby(playerNickname);
 		}
 
 		private void InternalLeaveLobby(string playerNickname) {
@@ -55,12 +55,13 @@ namespace Sbazuo.Server.Backend {
 			}
 			string lobbyId = PlayerNicknameToRoomId[playerNickname];
 			PlayerNicknameToRoomId.Remove(playerNickname);
+			Lobbies[lobbyId].RemovePlayer(playerNickname);
 			if (Lobbies[lobbyId].PlayersCount == 0) {
 				Lobbies.Remove(lobbyId);
 			}
 		}
 
-		public void StartLobby(string sessionId) {
+		public void StartLobby(string playerNickname) {
 			
 		}
 	}

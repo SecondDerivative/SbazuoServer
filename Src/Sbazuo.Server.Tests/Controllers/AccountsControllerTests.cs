@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sbazuo.Server.Backend;
 using Sbazuo.Server.Backend.Accounts;
+using Sbazuo.Server.Backend.Accounts.PasswordComparers;
 using Sbazuo.Server.Controllers;
 
 namespace Sbazuo.Server.Tests.Controllers {
@@ -12,7 +13,7 @@ namespace Sbazuo.Server.Tests.Controllers {
 
 		[TestInitialize]
 		public void Init() {
-			Controller = new AccountsController(new DefaultAccountService(new MemoryOnlyAccountDataProvider()), new DefaultSessionService());
+			Controller = new AccountsController(new DefaultAccountService(new MemoryOnlyAccountDataProvider(), new EqualPasswordComparer()), new DefaultSessionService());
 		}
 
 		[TestCleanup]

@@ -1,12 +1,16 @@
 ﻿using Sbazuo.Server.Backend.Accounts;
+using Sbazuo.Server.Backend.Accounts.PasswordComparers;
 
 namespace Sbazuo.Server.Backend {
 	public class DefaultAccountService : IAccountService {
 
 		private readonly IAccountDataProvider AccountDataProvider;
 
-		public DefaultAccountService(IAccountDataProvider accountDataProvider) {
+		private readonly IPasswordComparer PasswordComparer;
+
+		public DefaultAccountService(IAccountDataProvider accountDataProvider, IPasswordComparer passwordComparer) {
 			this.AccountDataProvider = accountDataProvider;
+			this.PasswordComparer = passwordComparer;
 		}
 
 		public bool Login(string nickname, string password) {
@@ -14,7 +18,7 @@ namespace Sbazuo.Server.Backend {
 			if (authInfo == null) {
 				return false;
 			}
-			return authInfo.PasswordHash == password;
+			return PasswordComparer.ValidatePassword(password, authInfo.PasswordHash);
 		}
 
 		public bool RegisterAccount(string nickname, string password) {
