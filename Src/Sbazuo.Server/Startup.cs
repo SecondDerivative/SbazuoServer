@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sbazuo.Server.Backend;
 using Sbazuo.Server.Backend.Accounts.PasswordComparers;
+using Sbazuo.Server.Backend.Lobbies;
 using Sbazuo.Server.Models.Converters.Contracts;
 
 namespace SbazuoServer {
@@ -21,6 +22,7 @@ namespace SbazuoServer {
 				.AddSingleton<IAccountService, DefaultAccountService>()
 				.AddSingleton<IPasswordComparer, EqualPasswordComparer>()
 				.AddSingleton<IConverterContractResolver, DefaultConverterContractResolver>()
+				.AddSingleton<ILobbyFactory, DefaultLobbyFactory>()
 				.AddSingleton<ISessionService, DefaultSessionService>()
 				.AddSingleton<ILobbyService, DefaultLobbyService>()
 				.AddControllers()

@@ -1,21 +1,25 @@
-﻿using Newtonsoft.Json;
-using Sbazuo.Engine.GameControls;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Sbazuo.Server.Models.Lobbies {
 
-	public class Lobby {
+	/// <summary>
+	/// represents information about lobbies
+	/// </summary>
+	public class Lobby : ILobby {
 
-		public readonly string Id;
+		public string Id { get; }
 
-		public readonly string CreatorNick;
+		public string CreatorNick { get; protected set; }
 
-		public readonly string LobbyName;
+		public string LobbyName { get; protected set; }
 
-		[JsonIgnore]
 		public int PlayersCount => PlayerNicknames.Count;
 
-		public List<string> PlayerNicknames;
+		/// <summary>
+		/// array of lobby's players
+		/// </summary>
+		protected List<string> PlayerNicknames { get; set; }
 
 		public string MapId { get; set; }
 
@@ -23,7 +27,6 @@ namespace Sbazuo.Server.Models.Lobbies {
 
 		public LobbyStatus Status { get; set; }
 
-		[JsonConstructor]
 		public Lobby(string id, string lobbyName, string creatorNick) {
 			Id = id;
 			CreatorNick = creatorNick;
@@ -31,19 +34,19 @@ namespace Sbazuo.Server.Models.Lobbies {
 			PlayerNicknames = new List<string> { creatorNick };
 		}
 
-		public string AddPlayer(string playerNickname) {
-			PlayerNicknames.Add(playerNickname);
-			return playerNickname;
+		public virtual bool Join(LobbyJoinOptions joinOptions) {
+			if (joinOptions is null) {
+				return false;
+			}
+			PlayerNicknames.Add(joinOptions.PlayerNickname);
+			return true;
 		}
 
-		public void RemovePlayer(string sessionId) {
-			PlayerNicknames.Remove(sessionId);
-		}
-
-		public GameController CreateGame() {
-			// @TODO
-			GameControllerBuilder builder = new GameControllerBuilder();
-			return null;
+		public virtual void LeaveLobby(string playerNickname) {
+			PlayerNicknames.Remove(playerNickname);
+			if (playerNickname == CreatorNick) {
+				CreatorNick = PlayerNicknames.FirstOrDefault();
+			}
 		}
 
 	}

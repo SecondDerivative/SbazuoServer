@@ -12,7 +12,7 @@ namespace Sbazuo.Server.Backend {
 		/// <summary>
 		/// gets created lobbies
 		/// </summary>
-		IEnumerable<Lobby> CreatedLobbies { get; }
+		IEnumerable<ILobby> CreatedLobbies { get; }
 
 		/// <summary>
 		/// join session in room
@@ -33,14 +33,14 @@ namespace Sbazuo.Server.Backend {
 		/// </summary>
 		/// <param name="playerNickname"></param>
 		/// <returns> created room </returns>
-		Lobby CreateLobby(string playerNickname, string lobbyName);
+		ILobby CreateLobby(string playerNickname, string lobbyName);
 
 		/// <summary>
 		/// returns room, which contains player
 		/// </summary>
 		/// <param name="playerNickname"></param>
 		/// <returns></returns>
-		Lobby GetLobbyByPlayerNickname(string playerNickname);
+		ILobby GetLobbyByPlayerNickname(string playerNickname);
 
 		/// <summary>
 		/// starts game in lobby

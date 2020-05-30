@@ -35,7 +35,7 @@ namespace Sbazuo.Server.Controllers {
 			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
-			return ModelConverter.ConvertCollection<Lobby, LobbyInfo>(LobbyService.CreatedLobbies);
+			return ModelConverter.ConvertCollection<ILobby, LobbyInfo>(LobbyService.CreatedLobbies);
 		}
 
 		[HttpGet]
@@ -43,7 +43,7 @@ namespace Sbazuo.Server.Controllers {
 			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
-			return ModelConverter.Convert<Lobby, LobbyInfo>(LobbyService.CreateLobby(SessionService.GetPlayerNicknameBySessionToken(sessionToken), lobbyName));
+			return ModelConverter.Convert<ILobby, LobbyInfo>(LobbyService.CreateLobby(SessionService.GetPlayerNicknameBySessionToken(sessionToken), lobbyName));
 		}
 
 		[HttpGet]

@@ -6,7 +6,7 @@ namespace Sbazuo.Server.Models.Converters {
 
 		public object Convert(object model) {
 			Lobby lobby = model as Lobby;
-			return new LobbyInfo() { Id = lobby.Id, CreatorNickname = lobby.CreatorNick, LobbyName = lobby.LobbyName, MapId = lobby.MapId, ModId = lobby.ModId, PlayerNicks = lobby.PlayerNicknames };
+			return new LobbyInfo() { Id = lobby.Id, CreatorNickname = lobby.CreatorNick, LobbyName = lobby.LobbyName, MapId = lobby.MapId, ModId = lobby.ModId };
 		}
 
 	}

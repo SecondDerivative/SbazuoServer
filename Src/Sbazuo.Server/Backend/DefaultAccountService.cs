@@ -18,7 +18,7 @@ namespace Sbazuo.Server.Backend {
 			if (authInfo == null) {
 				return false;
 			}
-			return PasswordComparer.ValidatePassword(password, authInfo.PasswordHash);
+			return PasswordComparer.ValidatePassword(password, authInfo);
 		}
 
 		public bool RegisterAccount(string nickname, string password) {

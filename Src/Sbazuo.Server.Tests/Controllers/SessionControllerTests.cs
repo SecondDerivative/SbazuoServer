@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sbazuo.Server.Backend;
+using Sbazuo.Server.Backend.Lobbies;
 using Sbazuo.Server.Controllers;
 using Sbazuo.Server.Models.Converters.Contracts;
 using Sbazuo.Server.Models.Responces;
@@ -16,7 +17,7 @@ namespace Sbazuo.Server.Tests.Controllers {
 		[TestInitialize]
 		public void Init() {
 			var sessionService = new DefaultSessionService();
-			Controller = new SessionController(sessionService, new DefaultLobbyService(), new DefaultConverterContractResolver());
+			Controller = new SessionController(sessionService, new DefaultLobbyService(new DefaultLobbyFactory()), new DefaultConverterContractResolver());
 			SessionToken = sessionService.CreateSessionToken("login");
 		}
 

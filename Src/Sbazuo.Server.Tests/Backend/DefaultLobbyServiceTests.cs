@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sbazuo.Server.Backend;
+using Sbazuo.Server.Backend.Lobbies;
 using Sbazuo.Server.Models.Lobbies;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Sbazuo.Server.Tests.Backend {
 
 		[TestInitialize]
 		public void Init() {
-			Service = new DefaultLobbyService();
+			Service = new DefaultLobbyService(new DefaultLobbyFactory());
 		}
 
 		[TestCleanup]
@@ -25,14 +26,14 @@ namespace Sbazuo.Server.Tests.Backend {
 		[TestMethod]
 		public void CreateLobbyTest() {
 			Service.CreateLobby("user", "lobby name");
-			Lobby lobby = Service.GetLobbyByPlayerNickname("user");
+			ILobby lobby = Service.GetLobbyByPlayerNickname("user");
 			Assert.IsNotNull(lobby);
 		}
 
 		[TestMethod]
 		public void JoinLobbyTest() {
 			Service.CreateLobby("user", "lobby name");
-			Lobby lobby = Service.GetLobbyByPlayerNickname("user");
+			ILobby lobby = Service.GetLobbyByPlayerNickname("user");
 			Service.Join("user2", lobby.Id);
 		}
 
@@ -44,7 +45,7 @@ namespace Sbazuo.Server.Tests.Backend {
 			Assert.AreEqual(0, Service.LobbiesCount);
 
 			Service.CreateLobby("user", "lobby name");
-			Lobby lobby = Service.GetLobbyByPlayerNickname("user");
+			ILobby lobby = Service.GetLobbyByPlayerNickname("user");
 			Service.Join("user2", lobby.Id);
 			Service.LeaveLobby("user");
 			Service.LeaveLobby("user2");

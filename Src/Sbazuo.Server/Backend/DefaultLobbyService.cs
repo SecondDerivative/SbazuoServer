@@ -1,4 +1,5 @@
-﻿using Sbazuo.Server.Models.Lobbies;
+﻿using Sbazuo.Server.Backend.Lobbies;
+using Sbazuo.Server.Models.Lobbies;
 using Sbazuo.Server.Utils;
 using System.Collections.Generic;
 
@@ -7,25 +8,28 @@ namespace Sbazuo.Server.Backend {
 
 		private IDictionary<string, string> PlayerNicknameToRoomId;
 
-		private IDictionary<string, Lobby> Lobbies;
+		private IDictionary<string, ILobby> Lobbies;
 
-		public IEnumerable<Lobby> CreatedLobbies => this.Lobbies.Values;
+		public IEnumerable<ILobby> CreatedLobbies => this.Lobbies.Values;
 
 		public int LobbiesCount => Lobbies.Count;
 
-		public DefaultLobbyService() {
+		private readonly ILobbyFactory LobbyFactory;
+
+		public DefaultLobbyService(ILobbyFactory lobbyFactory) {
 			PlayerNicknameToRoomId = new Dictionary<string, string>();
-			Lobbies = new Dictionary<string, Lobby>();
+			LobbyFactory = lobbyFactory;
+			Lobbies = new Dictionary<string, ILobby>();
 		}
 
-		public Lobby CreateLobby(string playerNickname, string lobbyName) {
-			Lobby createdRoom = new Lobby(StringGenerator.GenerateString(), lobbyName, playerNickname);
+		public ILobby CreateLobby(string playerNickname, string lobbyName) {
+			ILobby createdRoom = LobbyFactory.CreateLobby(lobbyName, playerNickname);
 			Lobbies.Add(createdRoom.Id, createdRoom);
 			PlayerNicknameToRoomId.Add(playerNickname, createdRoom.Id);
 			return createdRoom;
 		}
 
-		public Lobby GetLobbyByPlayerNickname(string playerNickname) {
+		public ILobby GetLobbyByPlayerNickname(string playerNickname) {
 			if (!PlayerNicknameToRoomId.ContainsKey(playerNickname)) {
 				return null;
 			}
@@ -42,7 +46,8 @@ namespace Sbazuo.Server.Backend {
 				return null;
 			}
 			PlayerNicknameToRoomId.Add(playerNickname, lobbyId);
-			return Lobbies[lobbyId].AddPlayer(playerNickname);
+			Lobbies[lobbyId].Join(new LobbyJoinOptions { PlayerNickname = playerNickname } );
+			return playerNickname;
 		}
 
 		public void LeaveLobby(string playerNickname) {
@@ -55,7 +60,7 @@ namespace Sbazuo.Server.Backend {
 			}
 			string lobbyId = PlayerNicknameToRoomId[playerNickname];
 			PlayerNicknameToRoomId.Remove(playerNickname);
-			Lobbies[lobbyId].RemovePlayer(playerNickname);
+			Lobbies[lobbyId].LeaveLobby(playerNickname);
 			if (Lobbies[lobbyId].PlayersCount == 0) {
 				Lobbies.Remove(lobbyId);
 			}
