@@ -10,16 +10,16 @@ namespace Sbazuo.Server.Models.Lobbies {
 
 		public string Id { get; }
 
-		public string CreatorNick { get; protected set; }
+		public string CreatorId { get; protected set; }
 
 		public string LobbyName { get; protected set; }
 
-		public int PlayersCount => PlayerNicknames.Count;
+		public int PlayersCount => Players.Count;
 
 		/// <summary>
 		/// array of lobby's players
 		/// </summary>
-		protected List<string> PlayerNicknames { get; set; }
+		protected List<string> Players { get; set; }
 
 		public string MapId { get; set; }
 
@@ -27,27 +27,27 @@ namespace Sbazuo.Server.Models.Lobbies {
 
 		public LobbyStatus Status { get; set; }
 
-		public IEnumerable<string> Players => PlayerNicknames;
+		public IEnumerable<string> PlayerIds => Players;
 
-		public Lobby(string id, string lobbyName, string creatorNick) {
+		public Lobby(string id, string lobbyName, string creatorId) {
 			Id = id;
-			CreatorNick = creatorNick;
+			CreatorId = creatorId;
 			LobbyName = lobbyName;
-			PlayerNicknames = new List<string> { creatorNick };
+			Players = new List<string> { creatorId };
 		}
 
 		public virtual bool Join(LobbyJoinOptions joinOptions) {
 			if (joinOptions is null) {
 				return false;
 			}
-			PlayerNicknames.Add(joinOptions.PlayerNickname);
+			Players.Add(joinOptions.PlayerNickname);
 			return true;
 		}
 
-		public virtual void LeaveLobby(string playerNickname) {
-			PlayerNicknames.Remove(playerNickname);
-			if (playerNickname == CreatorNick) {
-				CreatorNick = PlayerNicknames.FirstOrDefault();
+		public virtual void LeaveLobby(string playerId) {
+			Players.Remove(playerId);
+			if (playerId == CreatorId) {
+				CreatorId = Players.FirstOrDefault();
 			}
 		}
 

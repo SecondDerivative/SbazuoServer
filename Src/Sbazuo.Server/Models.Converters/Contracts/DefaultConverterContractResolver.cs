@@ -31,7 +31,9 @@ namespace Sbazuo.Server.Models.Converters.Contracts {
 				}
 				if (allowedTypes.ConvertedType.Where(x => x == modelType).Count() > 0) {
 					//Console.WriteLine("founded converter " + converterAttribute.ConverterType.FullName + " begin convert");
-					return converterAttribute.ConverterType.GetMethod("Convert").Invoke((Activator.CreateInstance(converterAttribute.ConverterType) as IConverter), new object[] { model });
+					Converter converter = Activator.CreateInstance(converterAttribute.ConverterType) as Converter;
+					converter.Invoker = this;
+					return converterAttribute.ConverterType.GetMethod("Convert").Invoke(converter, new object[] { model });
 				}
 			}
 			//Console.WriteLine("converters not found");

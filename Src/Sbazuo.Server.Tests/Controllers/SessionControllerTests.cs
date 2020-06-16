@@ -38,9 +38,9 @@ namespace Sbazuo.Server.Tests.Controllers {
 		public void CreateLobbyTest() {
 			LobbyInfo lobby = Controller.CreateLobby(SessionToken, "name");
 			Assert.AreEqual("name", lobby.LobbyName);
-			Assert.AreEqual("login", lobby.CreatorNickname);
-			Assert.AreEqual(1, lobby.PlayerNicks.Count);
-			Assert.AreEqual("login", lobby.PlayerNicks[0]);
+			Assert.AreEqual("login", lobby.CreatorId);
+			Assert.AreEqual(1, lobby.PlayerIds.Count);
+			Assert.AreEqual("login", lobby.PlayerIds[0]);
 		}
 
 

@@ -34,7 +34,7 @@ namespace Sbazuo.Server.Tests.Models.Converters {
 
 		}
 
-		private class Converter1 : IConverter {
+		private class Converter1 : Converter {
 
 			public SerX Convert(ModelA model) {
 				Assert.IsTrue(model.GetType() == typeof(ModelA) || model.GetType() == typeof(ModelB));
@@ -43,7 +43,7 @@ namespace Sbazuo.Server.Tests.Models.Converters {
 
 		}
 
-		private class Converter2 : IConverter {
+		private class Converter2 : Converter {
 
 			public SerY Convert(ModelC model) {
 				Assert.IsTrue(model.GetType() == typeof(ModelC));
@@ -61,7 +61,7 @@ namespace Sbazuo.Server.Tests.Models.Converters {
 			LobbyInfo serializedInfo = resolver.Convert<Lobby, LobbyInfo>(lobby);
 			Assert.AreEqual(lobby.Id, serializedInfo.Id);
 			Assert.AreEqual(lobby.LobbyName, serializedInfo.LobbyName);
-			Assert.AreEqual(lobby.CreatorNick, serializedInfo.CreatorNickname);
+			Assert.AreEqual(lobby.CreatorId, serializedInfo.CreatorId);
 		}
 
 		[TestMethod]

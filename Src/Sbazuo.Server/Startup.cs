@@ -25,6 +25,7 @@ namespace SbazuoServer {
 				.AddSingleton<ILobbyFactory, DefaultLobbyFactory>()
 				.AddSingleton<ISessionService, DefaultSessionService>()
 				.AddSingleton<ILobbyService, DefaultLobbyService>()
+				.AddSingleton<IGameService, DefaultGameService>()
 				.AddControllers()
 				.AddNewtonsoftJson();
 			//services.AddSingleton<HelloWorldController>();

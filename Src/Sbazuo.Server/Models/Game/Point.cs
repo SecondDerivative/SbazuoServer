@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Sbazuo.Geometry;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sbazuo.Server.Models.Game {
 	public class Point {
@@ -9,5 +10,18 @@ namespace Sbazuo.Server.Models.Game {
 		[Required]
 		public double Y;
 
+		public Point() {
+
+		}
+
+		public Point(Point2D point) {
+			X = point.X;
+			Y = point.Y;
+		}
+
+		public Point(Vector2D vector) {
+			X = vector.X;
+			Y = vector.Y;
+		}
 	}
 }

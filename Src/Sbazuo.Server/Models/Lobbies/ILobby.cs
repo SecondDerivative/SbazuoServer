@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Sbazuo.Server.Models.Lobbies {
 
@@ -16,7 +15,7 @@ namespace Sbazuo.Server.Models.Lobbies {
 		/// <summary>
 		/// lobby's creator
 		/// </summary>
-		string CreatorNick { get; }
+		string CreatorId { get; }
 
 		/// <summary>
 		/// lobby's name
@@ -46,7 +45,7 @@ namespace Sbazuo.Server.Models.Lobbies {
 		/// <summary>
 		/// set of player nicknames
 		/// </summary>
-		IEnumerable<string> Players { get; }
+		IEnumerable<string> PlayerIds { get; }
 
 		/// <summary>
 		/// join player to lobby
@@ -55,7 +54,7 @@ namespace Sbazuo.Server.Models.Lobbies {
 		/// <returns> true, if player joined </returns>
 		bool Join(LobbyJoinOptions joinOptions);
 
-		void LeaveLobby(string playerNickname);
+		void LeaveLobby(string playerId);
 
 	}
 }
