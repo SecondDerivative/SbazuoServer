@@ -27,6 +27,8 @@ namespace Sbazuo.Server.Models.Lobbies {
 
 		public LobbyStatus Status { get; set; }
 
+		public IEnumerable<string> Players => PlayerNicknames;
+
 		public Lobby(string id, string lobbyName, string creatorNick) {
 			Id = id;
 			CreatorNick = creatorNick;

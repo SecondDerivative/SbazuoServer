@@ -36,7 +36,7 @@ namespace Sbazuo.Server.Tests.Models.Converters {
 
 		private class Converter1 : IConverter {
 
-			public object Convert(object model) {
+			public SerX Convert(ModelA model) {
 				Assert.IsTrue(model.GetType() == typeof(ModelA) || model.GetType() == typeof(ModelB));
 				return new SerX();
 			}
@@ -45,7 +45,7 @@ namespace Sbazuo.Server.Tests.Models.Converters {
 
 		private class Converter2 : IConverter {
 
-			public object Convert(object model) {
+			public SerY Convert(ModelC model) {
 				Assert.IsTrue(model.GetType() == typeof(ModelC));
 				return new SerY();
 			}

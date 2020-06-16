@@ -1,4 +1,7 @@
-﻿namespace Sbazuo.Server.Models.Lobbies {
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace Sbazuo.Server.Models.Lobbies {
 
 	/// <summary>
 	/// represents information about lobby
@@ -39,6 +42,11 @@
 		/// lobby's status (prepare or playing)
 		/// </summary>
 		LobbyStatus Status { get; }
+
+		/// <summary>
+		/// set of player nicknames
+		/// </summary>
+		IEnumerable<string> Players { get; }
 
 		/// <summary>
 		/// join player to lobby
