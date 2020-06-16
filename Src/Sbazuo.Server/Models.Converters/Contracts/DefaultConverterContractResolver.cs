@@ -29,7 +29,7 @@ namespace Sbazuo.Server.Models.Converters.Contracts {
 				if (converterAttribute == null) {
 					continue;
 				}
-				if (allowedTypes.ConvertedType.Where(x => x == modelType).Count() > 0) {
+				if (allowedTypes.ConvertedType.Where(x => x == modelType || x.IsAssignableFrom(modelType)).Count() > 0) {
 					//Console.WriteLine("founded converter " + converterAttribute.ConverterType.FullName + " begin convert");
 					Converter converter = Activator.CreateInstance(converterAttribute.ConverterType) as Converter;
 					converter.Invoker = this;
