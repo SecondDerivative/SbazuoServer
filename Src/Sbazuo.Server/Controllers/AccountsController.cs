@@ -18,18 +18,14 @@ namespace Sbazuo.Server.Controllers {
 
 		[HttpGet]
 		public string Login(AuthRequest authData) {
-			if (!AccountService.Login(authData.Nickname, authData.Password)) {
-				return null;
-			}
-			return SessionService.CreateSessionToken(authData.Nickname);
+			string accId = AccountService.Login(authData.Nickname, authData.Password);
+			return accId == null ? null : SessionService.CreateSessionToken(accId);
 		}
 
 		[HttpGet]
 		public string Auth(AuthRequest authData) {
-			if (!AccountService.RegisterAccount(authData.Nickname, authData.Password)) {
-				return null;
-			}
-			return SessionService.CreateSessionToken(authData.Nickname);
+			string accId = AccountService.RegisterAccount(authData.Nickname, authData.Password);
+			return accId == null ? null : SessionService.CreateSessionToken(accId);
 		}
 
 	}

@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 namespace Sbazuo.Server.Backend.Accounts {
 	public interface IAccountDataProvider {
 
-		AccountSecureInfo GetAuthInfo(string nickname);
+		AccountInfo GetAccount(string nickname);
 
-		AccountPublicInfo GetAccount(string nickname);
-
-		void CreateAccount(string nickname, string password);
+		AccountInfo CreateAccount(string nickname, string password);
 
 	}
 }

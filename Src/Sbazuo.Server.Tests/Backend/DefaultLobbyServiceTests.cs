@@ -25,16 +25,18 @@ namespace Sbazuo.Server.Tests.Backend {
 
 		[TestMethod]
 		public void CreateLobbyTest() {
-			Service.CreateLobby("user", "lobby name");
-			ILobby lobby = Service.GetLobbyByPlayerNickname("user");
+			Service.CreateLobby("userid", "lobby name");
+			ILobby lobby = Service.GetLobbyByPlayerId("userid");
 			Assert.IsNotNull(lobby);
 		}
 
 		[TestMethod]
 		public void JoinLobbyTest() {
-			Service.CreateLobby("user", "lobby name");
-			ILobby lobby = Service.GetLobbyByPlayerNickname("user");
+			Service.CreateLobby("userid", "lobby name");
+			ILobby lobby = Service.GetLobbyByPlayerId("userid");
 			Service.Join("user2", lobby.Id);
+			ILobby joinedLobby = Service.GetLobbyByPlayerId("user2");
+			Assert.AreSame(lobby, joinedLobby);
 		}
 
 		[TestMethod]
@@ -45,7 +47,7 @@ namespace Sbazuo.Server.Tests.Backend {
 			Assert.AreEqual(0, Service.LobbiesCount);
 
 			Service.CreateLobby("user", "lobby name");
-			ILobby lobby = Service.GetLobbyByPlayerNickname("user");
+			ILobby lobby = Service.GetLobbyByPlayerId("user");
 			Service.Join("user2", lobby.Id);
 			Service.LeaveLobby("user");
 			Service.LeaveLobby("user2");

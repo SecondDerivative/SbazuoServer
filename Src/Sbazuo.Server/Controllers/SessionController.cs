@@ -27,7 +27,7 @@ namespace Sbazuo.Server.Controllers {
 			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
-			return ModelConverter.ConvertCollection<AccountPublicInfo, PlayerInfo>(SessionService.GetPlayers());
+			return ModelConverter.ConvertCollection<AccountInfo, PlayerInfo>(SessionService.GetPlayers());
 		}
 
 		[HttpGet]
@@ -43,7 +43,7 @@ namespace Sbazuo.Server.Controllers {
 			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
-			return ModelConverter.Convert<ILobby, LobbyInfo>(LobbyService.CreateLobby(SessionService.GetPlayerNicknameBySessionToken(sessionToken), lobbyName));
+			return ModelConverter.Convert<ILobby, LobbyInfo>(LobbyService.CreateLobby(SessionService.GetPlayerIdBySessionToken(sessionToken), lobbyName));
 		}
 
 		[HttpGet]
@@ -59,7 +59,7 @@ namespace Sbazuo.Server.Controllers {
 			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return;
 			}
-			LobbyService.LeaveLobby(SessionService.GetPlayerNicknameBySessionToken(sessionToken));
+			LobbyService.LeaveLobby(SessionService.GetPlayerIdBySessionToken(sessionToken));
 		}
 
 	}

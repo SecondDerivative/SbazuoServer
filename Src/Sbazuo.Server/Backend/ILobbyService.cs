@@ -17,36 +17,36 @@ namespace Sbazuo.Server.Backend {
 		/// <summary>
 		/// join session in room
 		/// </summary>
-		/// <param name="playerNickname"> </param>
+		/// <param name="playerId"> </param>
 		/// <param name="roomId"> room's unique id </param>
 		/// <returns> unique player's id </returns>
-		string Join(string playerNickname, string roomId);
+		string Join(string playerId, string roomId);
 
 		/// <summary>
 		/// leave session from room
 		/// </summary>
-		/// <param name="playerNickname"></param>
-		void LeaveLobby(string playerNickname);
+		/// <param name="playerId"></param>
+		void LeaveLobby(string playerId);
 
 		/// <summary>
 		/// creating new room
 		/// </summary>
-		/// <param name="playerNickname"></param>
+		/// <param name="playerId"></param>
 		/// <returns> created room </returns>
-		ILobby CreateLobby(string playerNickname, string lobbyName);
+		ILobby CreateLobby(string playerId, string lobbyName);
 
 		/// <summary>
 		/// returns room, which contains player
 		/// </summary>
-		/// <param name="playerNickname"></param>
+		/// <param name="playerId"></param>
 		/// <returns></returns>
-		ILobby GetLobbyByPlayerNickname(string playerNickname);
+		ILobby GetLobbyByPlayerId(string playerId);
 
 		/// <summary>
 		/// starts game in lobby
 		/// </summary>
 		/// <param name="sessionId"></param>
-		void StartLobby(string playerNickname);
+		void StartLobby(string playerId);
 
 	}
 }

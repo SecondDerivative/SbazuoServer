@@ -12,7 +12,7 @@ namespace Sbazuo.Server.Backend {
 		/// create new session token
 		/// </summary>
 		/// <returns> session token </returns>
-		string CreateSessionToken(string playerNickname);
+		string CreateSessionToken(string playerId);
 
 		/// <summary>
 		/// validating session token
@@ -22,18 +22,18 @@ namespace Sbazuo.Server.Backend {
 		bool ValidateSessionToken(string sessionToken);
 
 		/// <summary>
-		/// returns player nickname
+		/// returns player id
 		/// </summary>
 		/// <param name="sessionToken"></param>
 		/// <returns></returns>
-		string GetPlayerNicknameBySessionToken(string sessionToken);
+		string GetPlayerIdBySessionToken(string sessionToken);
 
 		/// <summary>
 		/// returns all players in game
 		/// </summary>
 		/// <param name="sessionToken"></param>
 		/// <returns></returns>
-		IEnumerable<AccountPublicInfo> GetPlayers();
+		IEnumerable<AccountInfo> GetPlayers();
 
 	}
 }

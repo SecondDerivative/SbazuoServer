@@ -31,14 +31,14 @@ namespace Sbazuo.Server.Backend {
 			return token;
 		}
 
-		public string GetPlayerNicknameBySessionToken(string sessionToken) {
+		public string GetPlayerIdBySessionToken(string sessionToken) {
 			if (!ValidateSessionToken(sessionToken)) {
 				return null;
 			}
 			return OnlinePlayers.Where(x => x.Value == sessionToken).FirstOrDefault().Key;
 		}
 
-		public IEnumerable<AccountPublicInfo> GetPlayers() {
+		public IEnumerable<AccountInfo> GetPlayers() {
 			throw new NotImplementedException();
 		}
 	}

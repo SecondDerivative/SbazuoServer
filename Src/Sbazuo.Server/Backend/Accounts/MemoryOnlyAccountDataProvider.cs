@@ -4,30 +4,28 @@ using System.Collections.Generic;
 namespace Sbazuo.Server.Backend.Accounts {
 	public class MemoryOnlyAccountDataProvider : IAccountDataProvider {
 
-		public Dictionary<string, AccountPublicInfo> PublicInfos;
-
-		public Dictionary<string, AccountSecureInfo> SecureInfos;
+		public Dictionary<string, AccountInfo> Accounts;
 
 		public MemoryOnlyAccountDataProvider() {
-			PublicInfos = new Dictionary<string, AccountPublicInfo>();
-			SecureInfos = new Dictionary<string, AccountSecureInfo>();
+			Accounts = new Dictionary<string, AccountInfo>();
 #if DEBUG
-			PublicInfos.Add("login", new AccountPublicInfo() { Nickname = "login" });
-			SecureInfos.Add("login", new AccountSecureInfo() { Nickname = "login", PasswordHash = "12345" });
+			Accounts.Add("login", new AccountInfo() { Nickname = "login", PasswordHash = "12345", Id = "ABCD" });
 #endif
 		}
 
-		public void CreateAccount(string nickname, string password) {
-			PublicInfos.Add(nickname, new AccountPublicInfo { Nickname = nickname });
-			SecureInfos.Add(nickname, new AccountSecureInfo { Nickname = nickname, PasswordHash = password });
+		public AccountInfo CreateAccount(string nickname, string password) {
+			string accId = Utils.StringGenerator.GenerateString();
+			AccountInfo result = new AccountInfo { Nickname = nickname, PasswordHash = password, Id = accId };
+			Accounts.Add(nickname, result);
+			return result;
 		}
 
-		public AccountPublicInfo GetAccount(string nickname) {
-			return PublicInfos.ContainsKey(nickname) ? PublicInfos[nickname] : null;
+		public AccountInfo GetAccount(string nickname) {
+			return Accounts.ContainsKey(nickname) ? Accounts[nickname] : null;
 		}
 
-		public AccountSecureInfo GetAuthInfo(string nickname) {
-			return SecureInfos.ContainsKey(nickname) ? SecureInfos[nickname] : null;
+		public AccountInfo GetAuthInfo(string nickname) {
+			return Accounts.ContainsKey(nickname) ? Accounts[nickname] : null;
 		}
 	}
 }

@@ -22,16 +22,16 @@ namespace Sbazuo.Server.Tests.Backend {
 
 		[TestMethod]
 		public void LoginTest() {
-			Assert.IsTrue(Service.Login("login", "12345"));
-			Assert.IsFalse(Service.Login("login", ""));
-			Assert.IsFalse(Service.Login("login", "123432"));
-			Assert.IsFalse(Service.Login("", "12345"));
+			Assert.IsNotNull(Service.Login("login", "12345"));
+			Assert.IsNull(Service.Login("login", ""));
+			Assert.IsNull(Service.Login("login", "123432"));
+			Assert.IsNull(Service.Login("", "12345"));
 		}
 
 		[TestMethod]
 		public void RegisterAccountTest() {
-			Assert.IsTrue(Service.RegisterAccount("usr", "4321"));
-			Assert.IsTrue(Service.Login("usr", "4321"));
+			Assert.IsNotNull(Service.RegisterAccount("usr", "4321"));
+			Assert.IsNotNull(Service.Login("usr", "4321"));
 		}
 
 	}

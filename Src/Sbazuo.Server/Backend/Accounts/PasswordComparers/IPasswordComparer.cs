@@ -7,7 +7,7 @@ namespace Sbazuo.Server.Backend.Accounts.PasswordComparers {
 	/// </summary>
 	public interface IPasswordComparer {
 
-		bool ValidatePassword(string inputPassword, AccountSecureInfo account);
+		bool ValidatePassword(string inputPassword, AccountInfo account);
 
 	}
 }
