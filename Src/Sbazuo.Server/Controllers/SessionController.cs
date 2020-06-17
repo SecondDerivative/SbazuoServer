@@ -23,11 +23,11 @@ namespace Sbazuo.Server.Controllers {
 		}
 
 		[HttpGet]
-		public PlayerInfo[] GetPlayers(string sessionToken) {
+		public Models.Responces.AccountInfo[] GetPlayers(string sessionToken) {
 			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
-			return ModelConverter.ConvertCollection<AccountInfo, PlayerInfo>(SessionService.GetPlayers());
+			return ModelConverter.ConvertCollection<Models.Accounts.AccountInfo, Models.Responces.AccountInfo>(SessionService.GetPlayers());
 		}
 
 		[HttpGet]

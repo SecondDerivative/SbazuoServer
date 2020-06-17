@@ -1,5 +1,5 @@
 ﻿namespace Sbazuo.Server.Models.Responces {
-	public class PlayerInfo {
+	public class AccountInfo {
 
 		public string NickName { get; set; }
 

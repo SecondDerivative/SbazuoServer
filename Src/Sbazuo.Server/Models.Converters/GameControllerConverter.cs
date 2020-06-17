@@ -1,6 +1,7 @@
 ﻿using Sbazuo.Engine.Blocks;
 using Sbazuo.Engine.GameControls;
 using Sbazuo.Engine.GameMods;
+using Sbazuo.Engine.Players;
 using Sbazuo.Engine.Projectiles;
 using Sbazuo.Server.Models.Responces.Game;
 using Sbazuo.Server.Models.Responces.Game.Blocks;
@@ -20,9 +21,14 @@ namespace Sbazuo.Server.Models.Converters {
 			foreach (IProjectile projectile in game.Projectiles) {
 				projectiles.Add(Invoker.Convert<IProjectile, ProjectileInfo>(projectile));
 			}
+			Dictionary<string, PlayerInfo> players = new Dictionary<string, PlayerInfo>();
+			foreach (Player player in game.Players) {
+				PlayerInfo converted = Invoker.Convert<Player, PlayerInfo>(player);
+				players.Add(converted.Id, converted);
+			}
 			ThreeStageGameMod mod = (game.GameMod as ThreeStageGameMod);
 			string gameStatusId = mod?.GameStage.ToString();
-			return new GameState() { Blocks = blocks.ToList(), Projectiles = projectiles.ToList(), CurrentPlayerId = mod?.CurrentPlayerId, GameStatusId = gameStatusId };
+			return new GameState() { Blocks = blocks.ToList(), Projectiles = projectiles.ToList(), CurrentPlayerId = mod?.CurrentPlayerId, GameStatusId = gameStatusId, Players = players };
 		}
 
 	}

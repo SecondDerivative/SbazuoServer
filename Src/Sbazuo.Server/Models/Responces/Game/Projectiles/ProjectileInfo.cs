@@ -2,11 +2,10 @@
 using Sbazuo.Server.Models.Converters;
 using Sbazuo.Server.Models.Converters.Attributes;
 using Sbazuo.Server.Models.Game;
-using System;
 
 namespace Sbazuo.Server.Models.Responces.Game.Projectiles {
 
-	[AllowConvert(new Type[] { typeof(IProjectile) })]
+	[AllowConvert(typeof(IProjectile))]
 	[ModelConverter(typeof(ProjectileConverter))]
 	public class ProjectileInfo {
 

@@ -6,6 +6,7 @@ using Sbazuo.Engine.GameControls;
 using Sbazuo.Engine.GameMaps;
 using Sbazuo.Engine.GameMods;
 using Sbazuo.Engine.Projectiles;
+using Sbazuo.Geometry;
 using Sbazuo.Server.Models.Converters;
 using Sbazuo.Server.Models.Converters.Attributes;
 using Sbazuo.Server.Models.Converters.Contracts;
@@ -84,11 +85,11 @@ namespace Sbazuo.Server.Tests.Models.Converters {
 		public void GameStateTest() {
 			GameController controller = new GameController(new ThreeStageGameMod(), new RectangleMap("rect", 640, 480), new string[] { "a", "b", "c", "d" });
 			controller.ApplyAction(new GameActionShoot("a", "proj", 0, 1));
-			controller.Update();
+			controller.Blocks.Add(new PhysicalBlock("b", "rect", new Point2D(10, 20), 100));
 			//controller.ApplyAction(new GameActionCreateBlock("b", "block", "rect", new Geometry.Point2D(0, 0)))
 			GameState state = Resolver.Convert<GameController, GameState>(controller);
 
-			System.Console.WriteLine(JsonConvert.SerializeObject(state));
+			System.Console.WriteLine(JsonConvert.SerializeObject(state, Formatting.Indented));
 
 			IProjectile proj = controller.Projectiles.First();
 			ProjectileInfo projInfo = state.Projectiles.First();
@@ -107,13 +108,11 @@ namespace Sbazuo.Server.Tests.Models.Converters {
 
 		[TestMethod]
 		public void MultiDerivedClassesTest() {
-
-			DefaultConverterContractResolver resolver = new DefaultConverterContractResolver();
-
 			ModelA[] arr = new ModelA[] { new ModelA(), new ModelB(), new ModelC() };
 			SerX[] result = Resolver.ConvertCollection<ModelA, SerX>(arr);
 			Assert.AreEqual(3, result.Length);
 			Assert.AreEqual(result[0].GetType(), typeof(SerX));
+			Assert.AreEqual(result[1].GetType(), typeof(SerX));
 			Assert.AreEqual(result[2].GetType(), typeof(SerY));
 		}
 

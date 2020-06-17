@@ -7,8 +7,20 @@ using System.Reflection;
 namespace Sbazuo.Server.Models.Converters.Contracts {
 	public class DefaultConverterContractResolver : IConverterContractResolver {
 
+		private IDictionary<Type, Converter> ConverterCache;
+
+		private IDictionary<Type, MethodInfo> ConverterCacheMethod;
+
+		public DefaultConverterContractResolver() {
+			ConverterCache = new Dictionary<Type, Converter>();
+			ConverterCacheMethod = new Dictionary<Type, MethodInfo>();
+		}
+
 		public object Convert(object model, Type convertedType) {
 			Type modelType = model.GetType();
+			if (ConverterCache.ContainsKey(modelType)) {
+				return ConverterCacheMethod[modelType].Invoke(ConverterCache[modelType], new object[] { model });
+			}
 			Type[] possibleTypes =
 #if DEBUG
 				AppDomain.CurrentDomain.GetAssemblies()
@@ -33,7 +45,10 @@ namespace Sbazuo.Server.Models.Converters.Contracts {
 					//Console.WriteLine("founded converter " + converterAttribute.ConverterType.FullName + " begin convert");
 					Converter converter = Activator.CreateInstance(converterAttribute.ConverterType) as Converter;
 					converter.Invoker = this;
-					return converterAttribute.ConverterType.GetMethod("Convert").Invoke(converter, new object[] { model });
+					MethodInfo invokationMethod = converterAttribute.ConverterType.GetMethod("Convert");
+					ConverterCache.Add(modelType, converter);
+					ConverterCacheMethod.Add(modelType, invokationMethod);
+					return invokationMethod.Invoke(converter, new object[] { model });
 				}
 			}
 			//Console.WriteLine("converters not found");

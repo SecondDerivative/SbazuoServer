@@ -22,5 +22,7 @@ namespace Sbazuo.Server.Models.Responces.Game {
 
 		public List<ProjectileInfo> Projectiles;
 
+		public Dictionary<string, PlayerInfo> Players;
+
 	}
 }
