@@ -43,6 +43,5 @@ namespace Sbazuo.Server.Tests.Controllers {
 			Assert.AreEqual("login", lobby.PlayerIds[0]);
 		}
 
-
 	}
 }

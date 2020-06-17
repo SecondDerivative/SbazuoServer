@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sbazuo.Server.Backend;
-using Sbazuo.Server.Models.Accounts;
 using Sbazuo.Server.Models.Converters.Contracts;
 using Sbazuo.Server.Models.Lobbies;
 using Sbazuo.Server.Models.Responces;
@@ -23,7 +22,7 @@ namespace Sbazuo.Server.Controllers {
 		}
 
 		[HttpGet]
-		public Models.Responces.AccountInfo[] GetPlayers(string sessionToken) {
+		public AccountInfo[] GetPlayers(string sessionToken) {
 			if (!SessionService.ValidateSessionToken(sessionToken)) {
 				return null;
 			}
@@ -60,6 +59,13 @@ namespace Sbazuo.Server.Controllers {
 				return;
 			}
 			LobbyService.LeaveLobby(SessionService.GetPlayerIdBySessionToken(sessionToken));
+		}
+
+		public void Start(string sessionToken) {
+			if (!SessionService.ValidateSessionToken(sessionToken)) {
+				return;
+			}
+			LobbyService.StartLobby(SessionService.GetPlayerIdBySessionToken(sessionToken));
 		}
 
 	}

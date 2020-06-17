@@ -54,5 +54,23 @@ namespace Sbazuo.Server.Tests.Backend {
 			Assert.AreEqual(0, Service.LobbiesCount);
 		}
 
+		[TestMethod]
+		public void RejoinLobbyTest() {
+			ILobby lobby1 = Service.CreateLobby("user", "lobby 1");
+			Assert.IsNotNull(lobby1);
+			ILobby lobby2 = Service.CreateLobby("user", "lobby 2");
+			Assert.IsNull(lobby2);
+			string joinedLobbyId = Service.Join("user2", lobby1.Id);
+			Assert.AreEqual(2, lobby1.PlayersCount);
+			Assert.AreEqual(joinedLobbyId, lobby1.Id);
+
+			joinedLobbyId = Service.Join("user2", "abc");
+			Assert.AreEqual(1, lobby1.PlayersCount);
+			//Assert.AreEqual(joinedLobbyId, lobby2.Id);
+
+			lobby2 = Service.CreateLobby("user2", "lobby2");
+			Assert.IsNotNull(lobby2);
+		}
+
 	}
 }

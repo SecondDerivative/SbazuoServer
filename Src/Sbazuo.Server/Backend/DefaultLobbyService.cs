@@ -17,13 +17,19 @@ namespace Sbazuo.Server.Backend {
 
 		private readonly ILobbyFactory LobbyFactory;
 
-		public DefaultLobbyService(ILobbyFactory lobbyFactory) {
+		private readonly IGameService GameService;
+
+		public DefaultLobbyService(ILobbyFactory lobbyFactory, IGameService gameService) {
 			PlayerIdToRoomId = new Dictionary<string, string>();
 			LobbyFactory = lobbyFactory;
 			Lobbies = new Dictionary<string, ILobby>();
+			GameService = gameService;
 		}
 
 		public ILobby CreateLobby(string playerId, string lobbyName) {
+			if (GetLobbyByPlayerId(playerId) != null) {
+				return null;
+			}
 			ILobby createdRoom = LobbyFactory.CreateLobby(lobbyName, playerId);
 			Lobbies.Add(createdRoom.Id, createdRoom);
 			PlayerIdToRoomId.Add(playerId, createdRoom.Id);
@@ -48,7 +54,7 @@ namespace Sbazuo.Server.Backend {
 			}
 			PlayerIdToRoomId.Add(playerId, lobbyId);
 			Lobbies[lobbyId].Join(new LobbyJoinOptions { PlayerNickname = playerId } );
-			return playerId;
+			return lobbyId;
 		}
 
 		public void LeaveLobby(string playerId) {
@@ -68,7 +74,11 @@ namespace Sbazuo.Server.Backend {
 		}
 
 		public void StartLobby(string playerId) {
-			
+			ILobby lobby = GetLobbyByPlayerId(playerId);
+			if (lobby == null) {
+				return;
+			}
+			GameService.RegisterGame(lobby.MapId, lobby.ModId, lobby.PlayerIds);
 		}
 	}
 }
