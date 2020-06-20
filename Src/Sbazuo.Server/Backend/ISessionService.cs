@@ -35,5 +35,8 @@ namespace Sbazuo.Server.Backend {
 		/// <returns></returns>
 		IEnumerable<AccountInfo> GetPlayers();
 
+		// TODO remove after release MVP
+		string CreateTempSessionToken();
+
 	}
 }

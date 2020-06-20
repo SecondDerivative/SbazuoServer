@@ -15,7 +15,7 @@ namespace Sbazuo.Server.Tests.Backend {
 
 		[TestInitialize]
 		public void Init() {
-			Service = new DefaultLobbyService(new DefaultLobbyFactory());
+			Service = new DefaultLobbyService(new DefaultLobbyFactory(), new DefaultGameService());
 		}
 
 		[TestCleanup]

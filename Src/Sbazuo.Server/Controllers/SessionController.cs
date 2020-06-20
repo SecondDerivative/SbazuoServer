@@ -15,10 +15,13 @@ namespace Sbazuo.Server.Controllers {
 
 		private readonly IConverterContractResolver ModelConverter;
 
-		public SessionController(ISessionService sessionProvider, ILobbyService lobbyService, IConverterContractResolver resolver) : base() {
+		private readonly IGameService GameService;
+
+		public SessionController(ISessionService sessionProvider, ILobbyService lobbyService, IConverterContractResolver resolver, IGameService gameService = null) : base() {
 			this.SessionService = sessionProvider;
 			this.LobbyService = lobbyService;
 			this.ModelConverter = resolver;
+			this.GameService = gameService;
 		}
 
 		[HttpGet]
@@ -59,6 +62,13 @@ namespace Sbazuo.Server.Controllers {
 				return;
 			}
 			LobbyService.LeaveLobby(SessionService.GetPlayerIdBySessionToken(sessionToken));
+		}
+
+		[HttpGet]
+		public string JoinTemp() {
+			string result = SessionService.CreateTempSessionToken();
+			GameService.CreateOrJoin(result);
+			return result;
 		}
 
 		public void Start(string sessionToken) {

@@ -84,5 +84,12 @@ namespace Sbazuo.Server.Backend {
 			}
 		}
 
+		public void CreateOrJoin(string playerId) {
+			lock (Sync) {
+				if (Games.Count == 0) {
+					RegisterGame(null, null, new string[] { "1111", "1112", "1113", "1114" });
+				}
+			}
+		}
 	}
 }

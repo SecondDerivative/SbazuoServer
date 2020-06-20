@@ -17,7 +17,7 @@ namespace Sbazuo.Server.Tests.Controllers {
 		[TestInitialize]
 		public void Init() {
 			var sessionService = new DefaultSessionService();
-			Controller = new SessionController(sessionService, new DefaultLobbyService(new DefaultLobbyFactory()), new DefaultConverterContractResolver());
+			Controller = new SessionController(sessionService, new DefaultLobbyService(new DefaultLobbyFactory(), new DefaultGameService()), new DefaultConverterContractResolver());
 			SessionToken = sessionService.CreateSessionToken("login");
 		}
 

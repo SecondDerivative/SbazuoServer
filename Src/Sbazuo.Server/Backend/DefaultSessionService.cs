@@ -41,5 +41,14 @@ namespace Sbazuo.Server.Backend {
 		public IEnumerable<AccountInfo> GetPlayers() {
 			throw new NotImplementedException();
 		}
+
+		public string CreateTempSessionToken() {
+			string token = "1111";
+			while (OnlinePlayers.ContainsKey(token)) {
+				token = (int.Parse(token) + 1).ToString();
+			}
+			OnlinePlayers.Add(token, token);
+			return token;
+		}
 	}
 }

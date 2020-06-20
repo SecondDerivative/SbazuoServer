@@ -7,8 +7,8 @@ namespace Sbazuo.Engine.Shapes {
 			return new Shape2D(new Point2D[] {
 				position,
 				position + new Vector2D(0, 20),
-				position + new Vector2D(20, 20),
-				position + new Vector2D(20, 0)
+				position + new Vector2D(40, 40),
+				position + new Vector2D(40, 0)
 			});
 		}
 

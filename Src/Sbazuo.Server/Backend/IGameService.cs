@@ -10,5 +10,8 @@ namespace Sbazuo.Server.Backend {
 
 		public void GameShoot(string playerId, string projectileId, Point direction);
 
+		// TODO remove after release MVP
+		public void CreateOrJoin(string playerId);
+
 	}
 }
